@@ -22,17 +22,17 @@ public class ManagerLogin extends javax.swing.JFrame {
      */
     public ManagerLogin() {
         initComponents();
-        //scaleImage();
     }
 
-//    public void scaleImage()
-//    {
-//        ImageIcon icon = new ImageIcon("C:\\Users\\Abdullah\\OneDrive\\Desktop\\Mid term project\\CApture.PNG");
-//        Image img = icon.getImage();
-//        Image imgScale = img.getScaledInstance(backGround.getWidth(), backGround.getHeight(), Image.SCALE_SMOOTH);
-//        ImageIcon scaledImage = new ImageIcon(imgScale);
-//        backGround.setIcon(scaledImage);
-//    }
+    private static ManagerLogin obj;
+    public static ManagerLogin getObject()
+    {
+        if (obj == null)
+        {
+            obj = new ManagerLogin();
+        }
+        return obj;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -122,7 +122,7 @@ public class ManagerLogin extends javax.swing.JFrame {
         getContentPane().add(ShowPassword);
         ShowPassword.setBounds(480, 170, 120, 22);
 
-        backGround.setIcon(new javax.swing.ImageIcon("C:\\Users\\Abdullah\\OneDrive\\Desktop\\Mid term project\\untitled_page.png")); // NOI18N
+        backGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/untitled_page.png"))); // NOI18N
         getContentPane().add(backGround);
         backGround.setBounds(0, 0, 661, 291);
 
@@ -152,14 +152,20 @@ public class ManagerLogin extends javax.swing.JFrame {
 
     private void exitBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitBtnMouseClicked
         // TODO add your handling code here:
-        System.exit(0);
+        int confirm = JOptionPane.showConfirmDialog(null, "Are you sure to exit from the System?", "Warning...!", 1);
+        if(confirm == JOptionPane.YES_OPTION)
+        {
+            System.exit(0);
+        }
     }//GEN-LAST:event_exitBtnMouseClicked
 
     private void loginBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseClicked
         // TODO add your handling code here:
+        MainMenu menu = new MainMenu();
         if (Email.getText().equals("admin123@pasha.com") && Password.getText().equals("log1in?2")) {
             JOptionPane.showMessageDialog(null, "Admin Successfully login🎉🎉🎉🎊", "Congratualations🥳🥳", 1);
             this.setVisible(false);
+            menu.setVisible(true);
              }
         else
         {
