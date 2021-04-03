@@ -60,6 +60,7 @@ public class ManagerLogin extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         loginBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/login.png"))); // NOI18N
+        loginBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         loginBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 loginBtnMouseClicked(evt);
@@ -75,6 +76,7 @@ public class ManagerLogin extends javax.swing.JFrame {
         loginBtn.setBounds(390, 220, 130, 60);
 
         exitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/button.png"))); // NOI18N
+        exitBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         exitBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 exitBtnMouseClicked(evt);
@@ -163,7 +165,7 @@ public class ManagerLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         MainMenu menu = new MainMenu();
         if (Email.getText().equals("admin123@pasha.com") && Password.getText().equals("log1in?2")) {
-            JOptionPane.showMessageDialog(null, "Admin Successfully login🎉🎉🎉🎊", "Congratualations🥳🥳", 1);
+            //JOptionPane.showMessageDialog(null, "Admin Successfully login🎉🎉🎉🎊", "Congratualations🥳🥳", 1);
             this.setVisible(false);
             menu.setVisible(true);
              }

@@ -1,5 +1,6 @@
 
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,6 +19,7 @@ public class EmployeeForm extends javax.swing.JFrame {
      */
     public EmployeeForm() {
         initComponents();
+        switchPanels(jPanel2);
     }
 
     private static EmployeeForm obj;
@@ -40,6 +42,24 @@ public class EmployeeForm extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jPanel1 = new javax.swing.JPanel();
+        addEmpBtn = new javax.swing.JLabel();
+        isuStBtn = new javax.swing.JLabel();
+        isuLapBtn = new javax.swing.JLabel();
+        jLayeredPane = new javax.swing.JLayeredPane();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        AddEmpPanel = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        EditEmpPanel = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        DelEmpPanel = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        IssueStPanel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        IssueLapPanel = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         addEmpMenuItem = new javax.swing.JMenuItem();
@@ -51,9 +71,13 @@ public class EmployeeForm extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         aboutMenuItem = new javax.swing.JMenuItem();
-        logoutMenuItem = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
+        logoutMenuItem = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(816, 626));
+        setMinimumSize(new java.awt.Dimension(816, 626));
+        setResizable(false);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -100,6 +124,229 @@ public class EmployeeForm extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(6).setPreferredWidth(100);
         }
 
+        jPanel1.setBackground(new java.awt.Color(255, 153, 0));
+        jPanel1.setForeground(new java.awt.Color(204, 204, 204));
+
+        addEmpBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/addempbtn.png"))); // NOI18N
+        addEmpBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addEmpBtnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                addEmpBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addEmpBtnMouseExited(evt);
+            }
+        });
+
+        isuStBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/isustbtn.png"))); // NOI18N
+        isuStBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                isuStBtnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                isuStBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                isuStBtnMouseExited(evt);
+            }
+        });
+
+        isuLapBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/isulapbtn.png"))); // NOI18N
+        isuLapBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                isuLapBtnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                isuLapBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                isuLapBtnMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(isuStBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+            .addComponent(isuLapBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(addEmpBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addComponent(addEmpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(isuStBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(isuLapBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLayeredPane.setMaximumSize(new java.awt.Dimension(615, 360));
+        jLayeredPane.setName(""); // NOI18N
+        jLayeredPane.setPreferredSize(new java.awt.Dimension(615, 360));
+        jLayeredPane.setLayout(new java.awt.CardLayout());
+
+        jLabel7.setFont(new java.awt.Font("Papyrus", 3, 36)); // NOI18N
+        jLabel7.setText("Manage Your Employees Here......");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 4, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 611, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(149, 149, 149)
+                .addComponent(jLabel7)
+                .addContainerGap(154, Short.MAX_VALUE))
+        );
+
+        jLayeredPane.add(jPanel2, "card7");
+
+        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        jLabel3.setText("Add Employee");
+
+        javax.swing.GroupLayout AddEmpPanelLayout = new javax.swing.GroupLayout(AddEmpPanel);
+        AddEmpPanel.setLayout(AddEmpPanelLayout);
+        AddEmpPanelLayout.setHorizontalGroup(
+            AddEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddEmpPanelLayout.createSequentialGroup()
+                .addGap(253, 253, 253)
+                .addComponent(jLabel3)
+                .addContainerGap(240, Short.MAX_VALUE))
+        );
+        AddEmpPanelLayout.setVerticalGroup(
+            AddEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddEmpPanelLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel3)
+                .addContainerGap(320, Short.MAX_VALUE))
+        );
+
+        jLayeredPane.add(AddEmpPanel, "card2");
+
+        jLabel4.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        jLabel4.setText("Edit Employee");
+
+        javax.swing.GroupLayout EditEmpPanelLayout = new javax.swing.GroupLayout(EditEmpPanel);
+        EditEmpPanel.setLayout(EditEmpPanelLayout);
+        EditEmpPanelLayout.setHorizontalGroup(
+            EditEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EditEmpPanelLayout.createSequentialGroup()
+                .addGap(253, 253, 253)
+                .addComponent(jLabel4)
+                .addContainerGap(240, Short.MAX_VALUE))
+        );
+        EditEmpPanelLayout.setVerticalGroup(
+            EditEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EditEmpPanelLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel4)
+                .addContainerGap(320, Short.MAX_VALUE))
+        );
+
+        jLayeredPane.add(EditEmpPanel, "card2");
+
+        jLabel5.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        jLabel5.setText("Remove Employee");
+
+        javax.swing.GroupLayout DelEmpPanelLayout = new javax.swing.GroupLayout(DelEmpPanel);
+        DelEmpPanel.setLayout(DelEmpPanelLayout);
+        DelEmpPanelLayout.setHorizontalGroup(
+            DelEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DelEmpPanelLayout.createSequentialGroup()
+                .addGap(232, 232, 232)
+                .addComponent(jLabel5)
+                .addContainerGap(232, Short.MAX_VALUE))
+        );
+        DelEmpPanelLayout.setVerticalGroup(
+            DelEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DelEmpPanelLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel5)
+                .addContainerGap(320, Short.MAX_VALUE))
+        );
+
+        jLayeredPane.add(DelEmpPanel, "card2");
+
+        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        jLabel2.setText("Issue Stationary");
+
+        javax.swing.GroupLayout IssueStPanelLayout = new javax.swing.GroupLayout(IssueStPanel);
+        IssueStPanel.setLayout(IssueStPanelLayout);
+        IssueStPanelLayout.setHorizontalGroup(
+            IssueStPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(IssueStPanelLayout.createSequentialGroup()
+                .addGap(224, 224, 224)
+                .addComponent(jLabel2)
+                .addContainerGap(246, Short.MAX_VALUE))
+        );
+        IssueStPanelLayout.setVerticalGroup(
+            IssueStPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(IssueStPanelLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel2)
+                .addContainerGap(318, Short.MAX_VALUE))
+        );
+
+        jLayeredPane.add(IssueStPanel, "card2");
+
+        IssueLapPanel.setMaximumSize(new java.awt.Dimension(615, 360));
+        IssueLapPanel.setMinimumSize(new java.awt.Dimension(615, 360));
+        IssueLapPanel.setPreferredSize(new java.awt.Dimension(615, 360));
+
+        jLabel6.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        jLabel6.setText("Issue Laptop");
+
+        javax.swing.GroupLayout IssueLapPanelLayout = new javax.swing.GroupLayout(IssueLapPanel);
+        IssueLapPanel.setLayout(IssueLapPanelLayout);
+        IssueLapPanelLayout.setHorizontalGroup(
+            IssueLapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(IssueLapPanelLayout.createSequentialGroup()
+                .addGap(261, 261, 261)
+                .addComponent(jLabel6)
+                .addContainerGap(242, Short.MAX_VALUE))
+        );
+        IssueLapPanelLayout.setVerticalGroup(
+            IssueLapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(IssueLapPanelLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel6)
+                .addContainerGap(318, Short.MAX_VALUE))
+        );
+
+        jLayeredPane.add(IssueLapPanel, "card2");
+
+        jDesktopPane1.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jLayeredPane, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGap(190, 190, 190)
+                        .addComponent(jLayeredPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLayeredPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         jMenu1.setText("File");
 
         addEmpMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -113,6 +360,11 @@ public class EmployeeForm extends javax.swing.JFrame {
 
         delEmpMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DELETE, 0));
         delEmpMenuItem.setText("Delete Employee");
+        delEmpMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delEmpMenuItemActionPerformed(evt);
+            }
+        });
         jMenu1.add(delEmpMenuItem);
         jMenu1.add(jSeparator1);
 
@@ -130,6 +382,11 @@ public class EmployeeForm extends javax.swing.JFrame {
 
         editMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_INSERT, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         editMenuItem.setText("Edit Employee");
+        editMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editMenuItemActionPerformed(evt);
+            }
+        });
         jMenu2.add(editMenuItem);
 
         jMenuBar1.add(jMenu2);
@@ -145,13 +402,18 @@ public class EmployeeForm extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
-        logoutMenuItem.setText("Logout🔒");
+        jMenu5.setText("Logout🔒");
+
+        logoutMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        logoutMenuItem.setText("Log Out");
         logoutMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logoutMenuItemActionPerformed(evt);
             }
         });
-        jMenuBar1.add(logoutMenuItem);
+        jMenu5.add(logoutMenuItem);
+
+        jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
 
@@ -159,13 +421,16 @@ public class EmployeeForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
+            .addComponent(jDesktopPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 270, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -174,13 +439,8 @@ public class EmployeeForm extends javax.swing.JFrame {
 
     private void addEmpMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEmpMenuItemActionPerformed
         // TODO add your handling code here:
+        switchPanels(AddEmpPanel);
     }//GEN-LAST:event_addEmpMenuItemActionPerformed
-
-    private void logoutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutMenuItemActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-        ManagerLogin.getObject().setVisible(true);
-    }//GEN-LAST:event_logoutMenuItemActionPerformed
 
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         // TODO add your handling code here:
@@ -191,22 +451,108 @@ public class EmployeeForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
+    private void logoutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutMenuItemActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        ManagerLogin.getObject().setVisible(true);
+    }//GEN-LAST:event_logoutMenuItemActionPerformed
+
+    private void addEmpBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addEmpBtnMouseEntered
+        // TODO add your handling code here:
+        addEmpBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/addempbtn1.png")));
+    }//GEN-LAST:event_addEmpBtnMouseEntered
+
+    private void addEmpBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addEmpBtnMouseExited
+        // TODO add your handling code here:
+        addEmpBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/addempbtn.png")));
+    }//GEN-LAST:event_addEmpBtnMouseExited
+
+    private void isuStBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isuStBtnMouseEntered
+        // TODO add your handling code here:
+         isuStBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/isustbtn1.png")));
+    }//GEN-LAST:event_isuStBtnMouseEntered
+
+    private void isuStBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isuStBtnMouseExited
+        // TODO add your handling code here:
+         isuStBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/isustbtn.png")));
+    }//GEN-LAST:event_isuStBtnMouseExited
+
+    private void isuLapBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isuLapBtnMouseEntered
+        // TODO add your handling code here:
+        isuLapBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/isulapbtn1.png")));
+    }//GEN-LAST:event_isuLapBtnMouseEntered
+
+    private void isuLapBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isuLapBtnMouseExited
+        // TODO add your handling code here:
+        isuLapBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/isulapbtn.png")));
+    }//GEN-LAST:event_isuLapBtnMouseExited
+
+    private void addEmpBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addEmpBtnMouseClicked
+        // TODO add your handling code here:
+        switchPanels(AddEmpPanel);
+    }//GEN-LAST:event_addEmpBtnMouseClicked
+
+    private void isuStBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isuStBtnMouseClicked
+        // TODO add your handling code here:
+        switchPanels(IssueStPanel);
+    }//GEN-LAST:event_isuStBtnMouseClicked
+
+    private void isuLapBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isuLapBtnMouseClicked
+        // TODO add your handling code here:
+        switchPanels(IssueLapPanel);
+    }//GEN-LAST:event_isuLapBtnMouseClicked
+
+    private void delEmpMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delEmpMenuItemActionPerformed
+        // TODO add your handling code here:
+        switchPanels(DelEmpPanel);
+    }//GEN-LAST:event_delEmpMenuItemActionPerformed
+
+    private void editMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editMenuItemActionPerformed
+        // TODO add your handling code here:
+        switchPanels(EditEmpPanel);
+    }//GEN-LAST:event_editMenuItemActionPerformed
+
+        public void switchPanels(JPanel panel) {
+        jLayeredPane.removeAll();
+        jLayeredPane.add(panel);
+        jLayeredPane.repaint();
+        jLayeredPane.revalidate();
+    }
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel AddEmpPanel;
+    private javax.swing.JPanel DelEmpPanel;
+    private javax.swing.JPanel EditEmpPanel;
+    private javax.swing.JPanel IssueLapPanel;
+    private javax.swing.JPanel IssueStPanel;
     private javax.swing.JMenuItem aboutMenuItem;
+    private javax.swing.JLabel addEmpBtn;
     private javax.swing.JMenuItem addEmpMenuItem;
     private javax.swing.JMenuItem delEmpMenuItem;
     private javax.swing.JMenuItem editMenuItem;
     private javax.swing.JMenuItem exitMenuItem;
+    private javax.swing.JLabel isuLapBtn;
+    private javax.swing.JLabel isuStBtn;
+    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLayeredPane jLayeredPane;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JMenu logoutMenuItem;
+    private javax.swing.JMenuItem logoutMenuItem;
     // End of variables declaration//GEN-END:variables
 }

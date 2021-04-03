@@ -66,6 +66,7 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel1.setBounds(190, 0, 290, 70);
 
         EMPBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/EMPM.png"))); // NOI18N
+        EMPBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         EMPBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 EMPBtnMouseClicked(evt);
@@ -81,6 +82,7 @@ public class MainMenu extends javax.swing.JFrame {
         EMPBtn.setBounds(90, 100, 330, 56);
 
         SMBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/SM.png"))); // NOI18N
+        SMBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         SMBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 SMBtnMouseEntered(evt);
@@ -93,6 +95,7 @@ public class MainMenu extends javax.swing.JFrame {
         SMBtn.setBounds(110, 180, 290, 56);
 
         LogoutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/logout1.png"))); // NOI18N
+        LogoutBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         LogoutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 LogoutBtnMouseClicked(evt);
@@ -108,6 +111,7 @@ public class MainMenu extends javax.swing.JFrame {
         LogoutBtn.setBounds(180, 270, 150, 56);
 
         ExitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/button.png"))); // NOI18N
+        ExitBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ExitBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ExitBtnMouseClicked(evt);
@@ -120,7 +124,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
         jPanel1.add(ExitBtn);
-        ExitBtn.setBounds(360, 350, 112, 60);
+        ExitBtn.setBounds(358, 350, 112, 60);
 
         backGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/procurement-3.png"))); // NOI18N
         jPanel1.add(backGround);
