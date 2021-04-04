@@ -84,6 +84,9 @@ public class MainMenu extends javax.swing.JFrame {
         SMBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/SM.png"))); // NOI18N
         SMBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         SMBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SMBtnMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 SMBtnMouseEntered(evt);
             }
@@ -197,6 +200,12 @@ public class MainMenu extends javax.swing.JFrame {
         this.setVisible(false);
         EmployeeForm.getObject().setVisible(true);
     }//GEN-LAST:event_EMPBtnMouseClicked
+
+    private void SMBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SMBtnMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        InventoryForm.getObject().setVisible(true);
+    }//GEN-LAST:event_SMBtnMouseClicked
 
 
     

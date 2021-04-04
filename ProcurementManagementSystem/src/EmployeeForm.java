@@ -986,6 +986,11 @@ public class EmployeeForm extends javax.swing.JFrame {
 
         aboutMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         aboutMenuItem.setText("About");
+        aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutMenuItemActionPerformed(evt);
+            }
+        });
         jMenu4.add(aboutMenuItem);
 
         jMenuBar1.add(jMenu4);
@@ -1246,6 +1251,11 @@ public class EmployeeForm extends javax.swing.JFrame {
         // TODO add your handling code here:
          genLapSlipBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/genslipbtn.png")));
     }//GEN-LAST:event_genLapSlipBtnMouseExited
+
+    private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "This application is made to provide ease \n to an accessories manager of an office\nto manage inventory and employee's data\nApplicaion Owner & Builder: Rehan Pasha\nFor further details contact us @ rehankhalid5544@gmail.com\n\n Powered by Duko Community", "About", 1);
+    }//GEN-LAST:event_aboutMenuItemActionPerformed
 
         public void switchPanels(JPanel panel) {
         jLayeredPane.removeAll();
