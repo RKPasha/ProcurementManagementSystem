@@ -164,7 +164,7 @@ public class ManagerLogin extends javax.swing.JFrame {
     private void loginBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseClicked
         // TODO add your handling code here:
         MainMenu menu = new MainMenu();
-        if (Email.getText().equals("admin123@pasha.com") && Password.getText().equals("log1in?2")) {
+        if (Email.getText().equals("admin") && Password.getText().equals("admin")) {
             //JOptionPane.showMessageDialog(null, "Admin Successfully login🎉🎉🎉🎊", "Congratualations🥳🥳", 1);
             this.setVisible(false);
             menu.setVisible(true);
