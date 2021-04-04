@@ -191,7 +191,12 @@ public class EmployeeForm extends javax.swing.JFrame {
         jLayeredPane.setPreferredSize(new java.awt.Dimension(615, 360));
         jLayeredPane.setLayout(new java.awt.CardLayout());
 
+        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel2.setForeground(new java.awt.Color(102, 102, 255));
+
+        jLabel7.setBackground(new java.awt.Color(255, 153, 51));
         jLabel7.setFont(new java.awt.Font("Papyrus", 3, 36)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 153, 51));
         jLabel7.setText("Manage Your Employees Here......");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -264,9 +269,9 @@ public class EmployeeForm extends javax.swing.JFrame {
         DelEmpPanelLayout.setHorizontalGroup(
             DelEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DelEmpPanelLayout.createSequentialGroup()
-                .addGap(232, 232, 232)
+                .addGap(253, 253, 253)
                 .addComponent(jLabel5)
-                .addContainerGap(232, Short.MAX_VALUE))
+                .addContainerGap(240, Short.MAX_VALUE))
         );
         DelEmpPanelLayout.setVerticalGroup(
             DelEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,16 +291,16 @@ public class EmployeeForm extends javax.swing.JFrame {
         IssueStPanelLayout.setHorizontalGroup(
             IssueStPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(IssueStPanelLayout.createSequentialGroup()
-                .addGap(224, 224, 224)
+                .addGap(253, 253, 253)
                 .addComponent(jLabel2)
-                .addContainerGap(246, Short.MAX_VALUE))
+                .addContainerGap(240, Short.MAX_VALUE))
         );
         IssueStPanelLayout.setVerticalGroup(
             IssueStPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(IssueStPanelLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(14, 14, 14)
                 .addComponent(jLabel2)
-                .addContainerGap(318, Short.MAX_VALUE))
+                .addContainerGap(320, Short.MAX_VALUE))
         );
 
         jLayeredPane.add(IssueStPanel, "card2");
@@ -312,16 +317,16 @@ public class EmployeeForm extends javax.swing.JFrame {
         IssueLapPanelLayout.setHorizontalGroup(
             IssueLapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(IssueLapPanelLayout.createSequentialGroup()
-                .addGap(261, 261, 261)
+                .addGap(253, 253, 253)
                 .addComponent(jLabel6)
-                .addContainerGap(242, Short.MAX_VALUE))
+                .addContainerGap(250, Short.MAX_VALUE))
         );
         IssueLapPanelLayout.setVerticalGroup(
             IssueLapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(IssueLapPanelLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(14, 14, 14)
                 .addComponent(jLabel6)
-                .addContainerGap(318, Short.MAX_VALUE))
+                .addContainerGap(320, Short.MAX_VALUE))
         );
 
         jLayeredPane.add(IssueLapPanel, "card2");
@@ -457,51 +462,6 @@ public class EmployeeForm extends javax.swing.JFrame {
         ManagerLogin.getObject().setVisible(true);
     }//GEN-LAST:event_logoutMenuItemActionPerformed
 
-    private void addEmpBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addEmpBtnMouseEntered
-        // TODO add your handling code here:
-        addEmpBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/addempbtn1.png")));
-    }//GEN-LAST:event_addEmpBtnMouseEntered
-
-    private void addEmpBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addEmpBtnMouseExited
-        // TODO add your handling code here:
-        addEmpBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/addempbtn.png")));
-    }//GEN-LAST:event_addEmpBtnMouseExited
-
-    private void isuStBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isuStBtnMouseEntered
-        // TODO add your handling code here:
-         isuStBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/isustbtn1.png")));
-    }//GEN-LAST:event_isuStBtnMouseEntered
-
-    private void isuStBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isuStBtnMouseExited
-        // TODO add your handling code here:
-         isuStBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/isustbtn.png")));
-    }//GEN-LAST:event_isuStBtnMouseExited
-
-    private void isuLapBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isuLapBtnMouseEntered
-        // TODO add your handling code here:
-        isuLapBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/isulapbtn1.png")));
-    }//GEN-LAST:event_isuLapBtnMouseEntered
-
-    private void isuLapBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isuLapBtnMouseExited
-        // TODO add your handling code here:
-        isuLapBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/isulapbtn.png")));
-    }//GEN-LAST:event_isuLapBtnMouseExited
-
-    private void addEmpBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addEmpBtnMouseClicked
-        // TODO add your handling code here:
-        switchPanels(AddEmpPanel);
-    }//GEN-LAST:event_addEmpBtnMouseClicked
-
-    private void isuStBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isuStBtnMouseClicked
-        // TODO add your handling code here:
-        switchPanels(IssueStPanel);
-    }//GEN-LAST:event_isuStBtnMouseClicked
-
-    private void isuLapBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isuLapBtnMouseClicked
-        // TODO add your handling code here:
-        switchPanels(IssueLapPanel);
-    }//GEN-LAST:event_isuLapBtnMouseClicked
-
     private void delEmpMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delEmpMenuItemActionPerformed
         // TODO add your handling code here:
         switchPanels(DelEmpPanel);
@@ -511,6 +471,51 @@ public class EmployeeForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         switchPanels(EditEmpPanel);
     }//GEN-LAST:event_editMenuItemActionPerformed
+
+    private void isuLapBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isuLapBtnMouseExited
+        // TODO add your handling code here:
+        isuLapBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/isulapbtn.png")));
+    }//GEN-LAST:event_isuLapBtnMouseExited
+
+    private void isuLapBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isuLapBtnMouseEntered
+        // TODO add your handling code here:
+        isuLapBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/isulapbtn1.png")));
+    }//GEN-LAST:event_isuLapBtnMouseEntered
+
+    private void isuLapBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isuLapBtnMouseClicked
+        // TODO add your handling code here:
+        switchPanels(IssueLapPanel);
+    }//GEN-LAST:event_isuLapBtnMouseClicked
+
+    private void isuStBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isuStBtnMouseExited
+        // TODO add your handling code here:
+        isuStBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/isustbtn.png")));
+    }//GEN-LAST:event_isuStBtnMouseExited
+
+    private void isuStBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isuStBtnMouseEntered
+        // TODO add your handling code here:
+        isuStBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/isustbtn1.png")));
+    }//GEN-LAST:event_isuStBtnMouseEntered
+
+    private void isuStBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isuStBtnMouseClicked
+        // TODO add your handling code here:
+        switchPanels(IssueStPanel);
+    }//GEN-LAST:event_isuStBtnMouseClicked
+
+    private void addEmpBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addEmpBtnMouseExited
+        // TODO add your handling code here:
+        addEmpBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/addempbtn.png")));
+    }//GEN-LAST:event_addEmpBtnMouseExited
+
+    private void addEmpBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addEmpBtnMouseEntered
+        // TODO add your handling code here:
+        addEmpBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/addempbtn1.png")));
+    }//GEN-LAST:event_addEmpBtnMouseEntered
+
+    private void addEmpBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addEmpBtnMouseClicked
+        // TODO add your handling code here:
+        switchPanels(AddEmpPanel);
+    }//GEN-LAST:event_addEmpBtnMouseClicked
 
         public void switchPanels(JPanel panel) {
         jLayeredPane.removeAll();
