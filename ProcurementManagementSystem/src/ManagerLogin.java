@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 
@@ -53,7 +54,6 @@ public class ManagerLogin extends javax.swing.JFrame {
         backGround = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(661, 291));
         setMinimumSize(new java.awt.Dimension(661, 291));
         setUndecorated(true);
         setResizable(false);
@@ -103,6 +103,19 @@ public class ManagerLogin extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(390, 140, 70, 21);
 
+        Email.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                EmailFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                EmailFocusLost(evt);
+            }
+        });
+        Email.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                EmailMouseExited(evt);
+            }
+        });
         Email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EmailActionPerformed(evt);
@@ -110,6 +123,20 @@ public class ManagerLogin extends javax.swing.JFrame {
         });
         getContentPane().add(Email);
         Email.setBounds(480, 90, 160, 28);
+
+        Password.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                PasswordFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                PasswordFocusLost(evt);
+            }
+        });
+        Password.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                PasswordMouseExited(evt);
+            }
+        });
         getContentPane().add(Password);
         Password.setBounds(480, 130, 160, 28);
 
@@ -178,6 +205,7 @@ public class ManagerLogin extends javax.swing.JFrame {
 
     private void EmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_EmailActionPerformed
 
     private void ShowPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowPasswordActionPerformed
@@ -189,6 +217,42 @@ public class ManagerLogin extends javax.swing.JFrame {
             Password.setEchoChar('*');
         }
     }//GEN-LAST:event_ShowPasswordActionPerformed
+
+    private void EmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_EmailFocusLost
+        // TODO add your handling code here:
+        if (Email.getText().matches("admin")) {
+            Email.setBackground(Color.GREEN);
+        } else {
+            Email.setBackground(Color.red);
+        }
+    }//GEN-LAST:event_EmailFocusLost
+
+    private void PasswordMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PasswordMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PasswordMouseExited
+
+    private void EmailMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmailMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EmailMouseExited
+
+    private void PasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PasswordFocusLost
+        // TODO add your handling code here:
+        if (Password.getText().matches("admin")) {
+            Password.setBackground(Color.GREEN);
+        } else {
+            Password.setBackground(Color.red);
+        }
+    }//GEN-LAST:event_PasswordFocusLost
+
+    private void EmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_EmailFocusGained
+        // TODO add your handling code here:
+        Email.setBackground(Color.WHITE);
+    }//GEN-LAST:event_EmailFocusGained
+
+    private void PasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PasswordFocusGained
+        // TODO add your handling code here:
+         Password.setBackground(Color.WHITE);
+    }//GEN-LAST:event_PasswordFocusGained
 
     /**
      * @param args the command line arguments

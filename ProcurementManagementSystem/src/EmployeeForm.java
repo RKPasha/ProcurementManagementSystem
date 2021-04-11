@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -7,30 +8,32 @@ import javax.swing.JPanel;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Abdullah
  */
 public class EmployeeForm extends javax.swing.JFrame {
 
+    Validators V = new Validators();
+
     /**
      * Creates new form EmployeeForm
      */
     public EmployeeForm() {
         initComponents();
+        maleRadioBtn.setSelected(true);
         switchPanels(jPanel2);
     }
 
     private static EmployeeForm obj;
-    public static EmployeeForm getObject()
-    {
-        if (obj == null)
-        {
+
+    public static EmployeeForm getObject() {
+        if (obj == null) {
             obj = new EmployeeForm();
         }
         return obj;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,6 +72,8 @@ public class EmployeeForm extends javax.swing.JFrame {
         maleRadioBtn = new javax.swing.JRadioButton();
         femaleRadioBtn = new javax.swing.JRadioButton();
         addBtn = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
         EditEmpPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -115,6 +120,7 @@ public class EmployeeForm extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         addEmpMenuItem = new javax.swing.JMenuItem();
         delEmpMenuItem = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         exitMenuItem = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -126,7 +132,6 @@ public class EmployeeForm extends javax.swing.JFrame {
         logoutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(816, 626));
         setMinimumSize(new java.awt.Dimension(816, 626));
         setResizable(false);
 
@@ -178,6 +183,11 @@ public class EmployeeForm extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 153, 0));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setForeground(new java.awt.Color(204, 204, 204));
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
+        });
 
         addEmpBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/addempbtn.png"))); // NOI18N
         addEmpBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -315,27 +325,78 @@ public class EmployeeForm extends javax.swing.JFrame {
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Email");
 
+        nameTxtField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                nameTxtFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                nameTxtFieldFocusLost(evt);
+            }
+        });
         nameTxtField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameTxtFieldActionPerformed(evt);
             }
         });
 
+        cellNoTxtField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                cellNoTxtFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cellNoTxtFieldFocusLost(evt);
+            }
+        });
         cellNoTxtField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cellNoTxtFieldActionPerformed(evt);
             }
         });
 
+        emailTxtField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                emailTxtFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                emailTxtFieldFocusLost(evt);
+            }
+        });
         emailTxtField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 emailTxtFieldActionPerformed(evt);
             }
         });
 
+        cnicNoTxtField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                cnicNoTxtFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cnicNoTxtFieldFocusLost(evt);
+            }
+        });
         cnicNoTxtField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cnicNoTxtFieldActionPerformed(evt);
+            }
+        });
+
+        dobField.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                dobFieldComponentAdded(evt);
+            }
+        });
+        dobField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                dobFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                dobFieldFocusLost(evt);
+            }
+        });
+        dobField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                dobFieldMouseExited(evt);
             }
         });
 
@@ -371,6 +432,12 @@ public class EmployeeForm extends javax.swing.JFrame {
             }
         });
 
+        jLabel32.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel32.setText("Format: (03xx-xxxxxxx)");
+
+        jLabel33.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel33.setText("Format: (xxxxx-xxxxxxx-x)");
+
         javax.swing.GroupLayout AddEmpPanelLayout = new javax.swing.GroupLayout(AddEmpPanel);
         AddEmpPanel.setLayout(AddEmpPanelLayout);
         AddEmpPanelLayout.setHorizontalGroup(
@@ -380,6 +447,16 @@ public class EmployeeForm extends javax.swing.JFrame {
                     .addGroup(AddEmpPanelLayout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addGroup(AddEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(AddEmpPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addGap(18, 18, 18)
+                                .addComponent(maleRadioBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(femaleRadioBtn)
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel18)
+                                .addGap(18, 18, 18)
+                                .addComponent(emailTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(AddEmpPanelLayout.createSequentialGroup()
                                 .addGroup(AddEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel13)
@@ -391,23 +468,17 @@ public class EmployeeForm extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(AddEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(AddEmpPanelLayout.createSequentialGroup()
-                                        .addComponent(jLabel17)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cnicNoTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(AddEmpPanelLayout.createSequentialGroup()
                                         .addComponent(jLabel16)
                                         .addGap(18, 18, 18)
-                                        .addComponent(cellNoTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(AddEmpPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addGap(18, 18, 18)
-                                .addComponent(maleRadioBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(femaleRadioBtn)
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel18)
-                                .addGap(18, 18, 18)
-                                .addComponent(emailTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(AddEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel32)
+                                            .addComponent(cellNoTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(AddEmpPanelLayout.createSequentialGroup()
+                                        .addComponent(jLabel17)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(AddEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel33)
+                                            .addComponent(cnicNoTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddEmpPanelLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -421,28 +492,31 @@ public class EmployeeForm extends javax.swing.JFrame {
         AddEmpPanelLayout.setVerticalGroup(
             AddEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AddEmpPanelLayout.createSequentialGroup()
-                .addGroup(AddEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap()
+                .addGroup(AddEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(AddEmpPanelLayout.createSequentialGroup()
-                        .addGroup(AddEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(AddEmpPanelLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(jLabel3)
-                                .addGap(34, 34, 34)
-                                .addGroup(AddEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel13)
-                                    .addComponent(jLabel16)
-                                    .addComponent(nameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cellNoTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(AddEmpPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel8)))
+                        .addComponent(jLabel8)
                         .addGap(48, 48, 48)
                         .addGroup(AddEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel17)
                             .addComponent(jLabel15)
                             .addComponent(cnicNoTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(dobField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                    .addGroup(AddEmpPanelLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel3)
+                        .addGap(34, 34, 34)
+                        .addGroup(AddEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel16)
+                            .addComponent(nameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cellNoTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel32)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(dobField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(AddEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(jLabel14)
@@ -954,6 +1028,15 @@ public class EmployeeForm extends javax.swing.JFrame {
             }
         });
         jMenu1.add(delEmpMenuItem);
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_HOME, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem1.setText("Go to Main Menu");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
         jMenu1.add(jSeparator1);
 
         exitMenuItem.setText("Exit");
@@ -1037,9 +1120,8 @@ public class EmployeeForm extends javax.swing.JFrame {
 
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         // TODO add your handling code here:
-                int confirm = JOptionPane.showConfirmDialog(null, "Are you sure to exit from the System?", "Warning...!", 1);
-        if(confirm == JOptionPane.YES_OPTION)
-        {
+        int confirm = JOptionPane.showConfirmDialog(null, "Are you sure to exit from the System?", "Warning...!", 1);
+        if (confirm == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
     }//GEN-LAST:event_exitMenuItemActionPerformed
@@ -1052,16 +1134,14 @@ public class EmployeeForm extends javax.swing.JFrame {
 
     private void delEmpMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delEmpMenuItemActionPerformed
         // TODO add your handling code here:
-        if(searchEmp())
-        {
-           switchPanels(DelEmpPanel);
+        if (searchEmp()) {
+            switchPanels(DelEmpPanel);
         }
     }//GEN-LAST:event_delEmpMenuItemActionPerformed
 
     private void editMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editMenuItemActionPerformed
         // TODO add your handling code here:
-        if(searchEmp())
-        {
+        if (searchEmp()) {
             switchPanels(EditEmpPanel);
         }
     }//GEN-LAST:event_editMenuItemActionPerformed
@@ -1078,8 +1158,7 @@ public class EmployeeForm extends javax.swing.JFrame {
 
     private void isuLapBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isuLapBtnMouseClicked
         // TODO add your handling code here:
-        if(searchEmp())
-        {
+        if (searchEmp()) {
             switchPanels(IssueLapPanel);
         }
     }//GEN-LAST:event_isuLapBtnMouseClicked
@@ -1096,9 +1175,8 @@ public class EmployeeForm extends javax.swing.JFrame {
 
     private void isuStBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isuStBtnMouseClicked
         // TODO add your handling code here:
-        if(searchEmp())
-        {
-           switchPanels(IssueStPanel);
+        if (searchEmp()) {
+            switchPanels(IssueStPanel);
         }
     }//GEN-LAST:event_isuStBtnMouseClicked
 
@@ -1143,12 +1221,12 @@ public class EmployeeForm extends javax.swing.JFrame {
 
     private void addBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBtnMouseEntered
         // TODO add your handling code here:
-        addBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/addbtn1.png"))); 
+        addBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/addbtn1.png")));
     }//GEN-LAST:event_addBtnMouseEntered
 
     private void addBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBtnMouseExited
         // TODO add your handling code here:
-        addBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/addbtn.png"))); 
+        addBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/addbtn.png")));
     }//GEN-LAST:event_addBtnMouseExited
 
     private void cellNoTxtField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cellNoTxtField1ActionPerformed
@@ -1197,19 +1275,18 @@ public class EmployeeForm extends javax.swing.JFrame {
 
     private void delBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delBtnMouseEntered
         // TODO add your handling code here:
-        delBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/delbtn1.png"))); 
+        delBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/delbtn1.png")));
     }//GEN-LAST:event_delBtnMouseEntered
 
     private void delBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delBtnMouseExited
         // TODO add your handling code here:
-        delBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/delbtn.png"))); 
+        delBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/delbtn.png")));
     }//GEN-LAST:event_delBtnMouseExited
 
     private void delBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delBtnMouseClicked
         // TODO add your handling code here:
-         int confirm = JOptionPane.showConfirmDialog(null, "Are you sure to remove this Employee from the System?", "Warning...!", 1);
-        if(confirm == JOptionPane.YES_OPTION)
-        {
+        int confirm = JOptionPane.showConfirmDialog(null, "Are you sure to remove this Employee from the System?", "Warning...!", 1);
+        if (confirm == JOptionPane.YES_OPTION) {
             JOptionPane.showMessageDialog(null, "Employee Removed Succeddfully....!", "Delete", 1);
         }
     }//GEN-LAST:event_delBtnMouseClicked
@@ -1224,12 +1301,12 @@ public class EmployeeForm extends javax.swing.JFrame {
 
     private void addListBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addListBtnMouseEntered
         // TODO add your handling code here:
-         addListBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/addbtn1.png")));
+        addListBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/addbtn1.png")));
     }//GEN-LAST:event_addListBtnMouseEntered
 
     private void addListBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addListBtnMouseExited
         // TODO add your handling code here:
-         addListBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/addbtn.png")));
+        addListBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/addbtn.png")));
     }//GEN-LAST:event_addListBtnMouseExited
 
     private void genSlipBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_genSlipBtnMouseEntered
@@ -1244,12 +1321,12 @@ public class EmployeeForm extends javax.swing.JFrame {
 
     private void genLapSlipBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_genLapSlipBtnMouseEntered
         // TODO add your handling code here:
-         genLapSlipBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/genslipbtn1.png")));
+        genLapSlipBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/genslipbtn1.png")));
     }//GEN-LAST:event_genLapSlipBtnMouseEntered
 
     private void genLapSlipBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_genLapSlipBtnMouseExited
         // TODO add your handling code here:
-         genLapSlipBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/genslipbtn.png")));
+        genLapSlipBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/genslipbtn.png")));
     }//GEN-LAST:event_genLapSlipBtnMouseExited
 
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
@@ -1257,18 +1334,106 @@ public class EmployeeForm extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "This application is made to provide ease \n to an accessories manager of an office\nto manage inventory and employee's data\nApplicaion Owner & Builder: Rehan Pasha\nFor further details contact us @ rehankhalid5544@gmail.com\n\n Powered by Duko Community", "About", 1);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
-        public void switchPanels(JPanel panel) {
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        // TODO add your handling code here:
+        switchPanels(jPanel2);
+    }//GEN-LAST:event_jPanel1MouseClicked
+
+    private void nameTxtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameTxtFieldFocusLost
+        // TODO add your handling code here:
+        if (V.checkName(nameTxtField.getText())) {
+            nameTxtField.setBackground(Color.GREEN);
+        } else {
+            nameTxtField.setBackground(Color.RED);
+        }
+    }//GEN-LAST:event_nameTxtFieldFocusLost
+
+    private void nameTxtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameTxtFieldFocusGained
+        // TODO add your handling code here:
+        nameTxtField.setBackground(Color.WHITE);
+    }//GEN-LAST:event_nameTxtFieldFocusGained
+
+    private void cellNoTxtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cellNoTxtFieldFocusLost
+        // TODO add your handling code here:
+        if (V.isValidCellNo(cellNoTxtField.getText())) {
+            cellNoTxtField.setBackground(Color.GREEN);
+        } else {
+            cellNoTxtField.setBackground(Color.RED);
+        }
+    }//GEN-LAST:event_cellNoTxtFieldFocusLost
+
+    private void cellNoTxtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cellNoTxtFieldFocusGained
+        // TODO add your handling code here:
+        cellNoTxtField.setBackground(Color.white);
+    }//GEN-LAST:event_cellNoTxtFieldFocusGained
+
+    private void dobFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dobFieldFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dobFieldFocusLost
+
+    private void dobFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dobFieldFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dobFieldFocusGained
+
+    private void cnicNoTxtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cnicNoTxtFieldFocusLost
+        // TODO add your handling code here:
+        if (V.isValidCNIC(cnicNoTxtField.getText())) {
+            cnicNoTxtField.setBackground(Color.GREEN);
+        } else {
+            cnicNoTxtField.setBackground(Color.RED);
+        }
+    }//GEN-LAST:event_cnicNoTxtFieldFocusLost
+
+    private void cnicNoTxtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cnicNoTxtFieldFocusGained
+        // TODO add your handling code here:
+        cnicNoTxtField.setBackground(Color.white);
+    }//GEN-LAST:event_cnicNoTxtFieldFocusGained
+
+    private void emailTxtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailTxtFieldFocusLost
+        // TODO add your handling code here:
+        if (V.isValidEmail(emailTxtField.getText())) {
+            emailTxtField.setBackground(Color.GREEN);
+        } else {
+            emailTxtField.setBackground(Color.RED);
+        }
+    }//GEN-LAST:event_emailTxtFieldFocusLost
+
+    private void emailTxtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailTxtFieldFocusGained
+        // TODO add your handling code here:
+        emailTxtField.setBackground(Color.white);
+    }//GEN-LAST:event_emailTxtFieldFocusGained
+
+    private void dobFieldMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dobFieldMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dobFieldMouseExited
+
+    private void dobFieldComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_dobFieldComponentAdded
+        // TODO add your handling code here:
+        System.out.println(dobField.getDate());
+        if (V.checkDateOfBirth(dobField.getDate())) {
+            dobField.setBackground(Color.GREEN);
+        } else {
+            dobField.setBackground(Color.RED);
+        }
+    }//GEN-LAST:event_dobFieldComponentAdded
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        MainMenu.getObject().setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    public void switchPanels(JPanel panel) {
         jLayeredPane.removeAll();
         jLayeredPane.add(panel);
         jLayeredPane.repaint();
         jLayeredPane.revalidate();
     }
-  
-        public boolean searchEmp()
-        {
-            String ID = JOptionPane.showInputDialog(null, "Enter the Employee ID", "Search Employee...", 1);
-            return true;
-        }
+
+    public boolean searchEmp() {
+        String ID = JOptionPane.showInputDialog(null, "Enter the Employee ID", "Search Employee...", 1);
+        return true;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AddEmpPanel;
@@ -1329,6 +1494,8 @@ public class EmployeeForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1342,6 +1509,7 @@ public class EmployeeForm extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
