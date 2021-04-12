@@ -47,6 +47,7 @@ public class InventoryForm extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         addMenuItem = new javax.swing.JMenuItem();
         removeMenuItem = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         closeMenuItem = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -178,6 +179,15 @@ public class InventoryForm extends javax.swing.JFrame {
         removeMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         removeMenuItem.setText("Remove an Item");
         jMenu1.add(removeMenuItem);
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_HOME, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem1.setText("Go to Main Menu");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
         jMenu1.add(jSeparator1);
 
         closeMenuItem.setText("Close");
@@ -265,6 +275,12 @@ public class InventoryForm extends javax.swing.JFrame {
         addItem();
     }//GEN-LAST:event_addItemBtnMouseClicked
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        MainMenu.getObject().setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     public void addItem ()
     {
         JOptionPane.showInputDialog(null, "Enter the name of Item", "Add Item", 1);
@@ -283,6 +299,7 @@ public class InventoryForm extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -1,5 +1,6 @@
 
 import java.awt.Color;
+import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -15,6 +16,7 @@ import javax.swing.JPanel;
 public class EmployeeForm extends javax.swing.JFrame {
 
     Validators V = new Validators();
+    EmployeeData E;
 
     /**
      * Creates new form EmployeeForm
@@ -381,24 +383,7 @@ public class EmployeeForm extends javax.swing.JFrame {
             }
         });
 
-        dobField.addContainerListener(new java.awt.event.ContainerAdapter() {
-            public void componentAdded(java.awt.event.ContainerEvent evt) {
-                dobFieldComponentAdded(evt);
-            }
-        });
-        dobField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                dobFieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                dobFieldFocusLost(evt);
-            }
-        });
-        dobField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                dobFieldMouseExited(evt);
-            }
-        });
+        dobField.setMaxSelectableDate(new java.util.Date(253370750495000L));
 
         buttonGroup1.add(maleRadioBtn);
         maleRadioBtn.setForeground(new java.awt.Color(0, 0, 0));
@@ -1265,7 +1250,26 @@ public class EmployeeForm extends javax.swing.JFrame {
 
     private void addBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBtnMouseClicked
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Employee ID: EMP- \nEmployee Succesfully added!!", "Congratualations...", 1);
+        if(V.checkName(nameTxtField.getText()) && V.isValidCellNo(cellNoTxtField.getText()) && V.isValidCNIC(cnicNoTxtField.getText()) && V.isValidEmail(emailTxtField.getText()) && V.checkDateOfBirth(dobField.getDate()))
+        {
+            E = new EmployeeData();
+            E.setName(nameTxtField.getText());
+            E.setCellNo(cellNoTxtField.getText());
+            E.setDob(dobField.getDate());
+            E.setCnicNo(cnicNoTxtField.getText());
+            if (maleRadioBtn.isSelected()) {
+                E.setGender("Male");
+            } else {
+                E.setGender("Female");
+            }
+            E.setEmail(emailTxtField.getText());
+            // Emp-ID Generator
+            Random rand = new Random(47);
+            int x = rand.nextInt(999);
+            E.setEmpID("EMP-" + String.valueOf(x));
+            EmployeeList.getObject().addEmployee(E);
+        JOptionPane.showMessageDialog(null, "Employee ID: EMP- " +E.getEmpID() +"\nEmployee Succesfully added!!", "Congratualations...", 1);
+        }
     }//GEN-LAST:event_addBtnMouseClicked
 
     private void updateBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateBtnMouseClicked
@@ -1367,20 +1371,18 @@ public class EmployeeForm extends javax.swing.JFrame {
         cellNoTxtField.setBackground(Color.white);
     }//GEN-LAST:event_cellNoTxtFieldFocusGained
 
-    private void dobFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dobFieldFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dobFieldFocusLost
-
-    private void dobFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dobFieldFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dobFieldFocusGained
-
     private void cnicNoTxtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cnicNoTxtFieldFocusLost
         // TODO add your handling code here:
         if (V.isValidCNIC(cnicNoTxtField.getText())) {
             cnicNoTxtField.setBackground(Color.GREEN);
         } else {
             cnicNoTxtField.setBackground(Color.RED);
+        }
+        System.out.println(dobField.getDate());
+        if (V.checkDateOfBirth(dobField.getDate())) {
+            dobField.setBackground(Color.GREEN);
+        } else {
+            dobField.setBackground(Color.RED);
         }
     }//GEN-LAST:event_cnicNoTxtFieldFocusLost
 
@@ -1402,20 +1404,6 @@ public class EmployeeForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         emailTxtField.setBackground(Color.white);
     }//GEN-LAST:event_emailTxtFieldFocusGained
-
-    private void dobFieldMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dobFieldMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dobFieldMouseExited
-
-    private void dobFieldComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_dobFieldComponentAdded
-        // TODO add your handling code here:
-        System.out.println(dobField.getDate());
-        if (V.checkDateOfBirth(dobField.getDate())) {
-            dobField.setBackground(Color.GREEN);
-        } else {
-            dobField.setBackground(Color.RED);
-        }
-    }//GEN-LAST:event_dobFieldComponentAdded
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
