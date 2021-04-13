@@ -18,6 +18,7 @@ public class EmployeeDataTable extends AbstractTableModel{
 
     private List<EmployeeData> li = new ArrayList<EmployeeData>();
     private final String[] columnNames = {"Sr No.", "Name",  "Contact Number", "CNIC No.", "Email", "EMP-ID", "Info", "Edit", "Delete"};
+    public int x = 1;
 
     public EmployeeDataTable(List<EmployeeData> list) {
         this.li = list;
@@ -41,7 +42,6 @@ public class EmployeeDataTable extends AbstractTableModel{
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         EmployeeData E = li.get(rowIndex);
-        int x = 1;
         switch (columnIndex) {
             case 0:
                 return x++;

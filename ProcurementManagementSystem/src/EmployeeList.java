@@ -1,4 +1,5 @@
 
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,5 +36,27 @@ public class EmployeeList {
     
     public List<EmployeeData> getAllEmployee() {
         return list;
+    }
+    
+    protected void saveEmloyeeData() throws Throwable {
+        try {
+            FileWriter fw = new FileWriter("Employee_Data.csv");
+            fw.write("Name,Contact Number,Date Of Birth,CNIC No,Gender,Email ID,Employee ID\n");
+            for (int i = 0; i < list.size(); i++) {
+                fw.write(list.get(i).getName() + ","
+                        + list.get(i).getCellNo() + ","
+                        + list.get(i).getDob() + ","
+                        + list.get(i).getCnicNo() + ","
+                        + list.get(i).getGender() + ","
+                        + list.get(i).getEmail() + ","
+                        + list.get(i).getEmpID() + "\n");
+            }
+            fw.flush();
+            fw.close();
+            super.finalize();
+            System.out.println("Receipts Saved Successfully");
+        } catch (Throwable e) {
+            throw e;
+        }
     }
 }
