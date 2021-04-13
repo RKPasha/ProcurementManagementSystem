@@ -1,5 +1,6 @@
 
 import java.awt.Color;
+import java.util.Date;
 import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -25,16 +26,10 @@ public class EmployeeForm extends javax.swing.JFrame {
         initComponents();
         maleRadioBtn.setSelected(true);
         switchPanels(jPanel2);
+        EmployeeDataTable t = new EmployeeDataTable(EmployeeList.getObject().getAllEmployee());
+        jTable1.setModel(t);
     }
 
-    private static EmployeeForm obj;
-
-    public static EmployeeForm getObject() {
-        if (obj == null) {
-            obj = new EmployeeForm();
-        }
-        return obj;
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -133,54 +128,21 @@ public class EmployeeForm extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         logoutMenuItem = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(816, 626));
-        setResizable(false);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Sr No.", "Name", "Cell No", "CNIC No", "Email", "EMP ID", "Operations"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(30);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(100);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(110);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(150);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setPreferredWidth(200);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setPreferredWidth(70);
-            jTable1.getColumnModel().getColumn(6).setResizable(false);
-            jTable1.getColumnModel().getColumn(6).setPreferredWidth(100);
-        }
 
         jPanel1.setBackground(new java.awt.Color(255, 153, 0));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1090,8 +1052,7 @@ public class EmployeeForm extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -1255,7 +1216,8 @@ public class EmployeeForm extends javax.swing.JFrame {
             E = new EmployeeData();
             E.setName(nameTxtField.getText());
             E.setCellNo(cellNoTxtField.getText());
-            E.setDob(dobField.getDate());
+            Date date = dobField.getDate();
+            E.setDob(date);
             E.setCnicNo(cnicNoTxtField.getText());
             if (maleRadioBtn.isSelected()) {
                 E.setGender("Male");
@@ -1269,6 +1231,12 @@ public class EmployeeForm extends javax.swing.JFrame {
             E.setEmpID("EMP-" + String.valueOf(x));
             EmployeeList.getObject().addEmployee(E);
         JOptionPane.showMessageDialog(null, "Employee ID: EMP- " +E.getEmpID() +"\nEmployee Succesfully added!!", "Congratualations...", 1);
+        EmployeeForm F = new EmployeeForm();
+        this.setVisible(false);
+        F.setVisible(true);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Invalid Data Entered...!", "⚠ Warning......!!", 1);
         }
     }//GEN-LAST:event_addBtnMouseClicked
 
@@ -1378,17 +1346,17 @@ public class EmployeeForm extends javax.swing.JFrame {
         } else {
             cnicNoTxtField.setBackground(Color.RED);
         }
+    }//GEN-LAST:event_cnicNoTxtFieldFocusLost
+
+    private void cnicNoTxtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cnicNoTxtFieldFocusGained
+        // TODO add your handling code here:
+        cnicNoTxtField.setBackground(Color.white);
         System.out.println(dobField.getDate());
         if (V.checkDateOfBirth(dobField.getDate())) {
             dobField.setBackground(Color.GREEN);
         } else {
             dobField.setBackground(Color.RED);
         }
-    }//GEN-LAST:event_cnicNoTxtFieldFocusLost
-
-    private void cnicNoTxtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cnicNoTxtFieldFocusGained
-        // TODO add your handling code here:
-        cnicNoTxtField.setBackground(Color.white);
     }//GEN-LAST:event_cnicNoTxtFieldFocusGained
 
     private void emailTxtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailTxtFieldFocusLost

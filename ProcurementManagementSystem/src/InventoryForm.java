@@ -20,14 +20,6 @@ public class InventoryForm extends javax.swing.JFrame {
         initComponents();
     }
 
-    private static InventoryForm obj;
-
-    public static InventoryForm getObject() {
-        if (obj == null) {
-            obj = new InventoryForm();
-        }
-        return obj;
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

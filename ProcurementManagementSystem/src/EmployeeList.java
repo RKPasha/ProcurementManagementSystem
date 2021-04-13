@@ -32,4 +32,8 @@ public class EmployeeList {
     public void addEmployee(EmployeeData E) {
         list.add(E);
     }
+    
+    public List<EmployeeData> getAllEmployee() {
+        return list;
+    }
 }
