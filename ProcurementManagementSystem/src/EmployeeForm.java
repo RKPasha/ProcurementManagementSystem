@@ -1,11 +1,15 @@
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
 import java.util.Date;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -20,7 +24,17 @@ public class EmployeeForm extends javax.swing.JFrame {
 
     Validators V = new Validators();
     EmployeeData E;
-
+    private String ID;
+    public EmployeeForm(String Employee, String Action){
+        this.ID = Employee;
+        if(Action.equals("Edit"))
+        {
+            System.out.println("Here i m");
+           editTableBtn();
+        }else if(Action.equals("Delete")){
+            
+        }
+    }
     /**
      * Creates new form EmployeeForm
      */
@@ -30,6 +44,31 @@ public class EmployeeForm extends javax.swing.JFrame {
         switchPanels(jPanel2);
         EmployeeDataTable t = new EmployeeDataTable(EmployeeList.getObject().getAllEmployee());
         jTable1.setModel(t);
+        
+        Action increase = new AbstractAction() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JTable table = (JTable) e.getSource();
+                int row = Integer.valueOf(e.getActionCommand());
+                EmployeeDataTable model = (EmployeeDataTable) table.getModel();
+                model.editRow(row);     
+            }
+        };
+        ButtonColumn inc = new ButtonColumn(jTable1, increase, 7);
+        
+       
+         Action deleteAction = new AbstractAction() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JTable table = (JTable) e.getSource();
+                int row = Integer.valueOf(e.getActionCommand());
+                EmployeeDataTable model = (EmployeeDataTable) table.getModel();
+                model.deleteRow(row);     
+            }
+        };
+        ButtonColumn deleteButton = new ButtonColumn(jTable1, deleteAction, 8);
     }
 
 
@@ -1097,6 +1136,17 @@ public class EmployeeForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (searchEmp()) {
             switchPanels(EditEmpPanel);
+            E = EmployeeList.getObject().getEmployee(ID);
+            nameTxtField1.setText(E.getName());
+            cellNoTxtField1.setText(E.getCellNo());
+            dobField1.setDate(E.getDob());
+            cnicNoTxtField1.setText(E.getCnicNo());
+            if(E.getGender().equalsIgnoreCase("male")){
+                maleRadioBtn1.setSelected(true);
+            }else if(E.getGender().equalsIgnoreCase("female")){
+                femaleRadioBtn1.setSelected(true);
+            }
+            emailTxtField1.setText(E.getEmail());
         }
     }//GEN-LAST:event_editMenuItemActionPerformed
 
@@ -1395,10 +1445,36 @@ public class EmployeeForm extends javax.swing.JFrame {
     }
 
     public boolean searchEmp() {
-        String ID = JOptionPane.showInputDialog(null, "Enter the Employee ID", "Search Employee...", 1);
-        return true;
+        boolean flag = false;
+        this.ID = JOptionPane.showInputDialog(null, "Enter the Employee ID", "Search Employee...", 1);
+          for(int i = 0 ; i  < EmployeeList.getObject().getAllEmployee().size(); i++)
+         {
+             if(EmployeeList.getObject().getAllEmployee().get(i).getEmpID().equals(ID))
+             {
+                 System.out.println("Employee Found");
+                 flag =true;
+                 break;
+             }
+         }
+        return flag;
     }
 
+    private void editTableBtn(){
+        EmployeeData L = EmployeeList.getObject().getEmployee(ID);
+        switchPanels(EditEmpPanel);
+        nameTxtField1.setText(L.getName());
+        cellNoTxtField1.setText(L.getCellNo());
+        dobField1.setDate(L.getDob());
+        cnicNoTxtField1.setText(L.getCnicNo());
+        if (L.getGender().equalsIgnoreCase("male")) {
+            maleRadioBtn1.setSelected(true);
+        } else if (L.getGender().equalsIgnoreCase("female")) {
+            femaleRadioBtn1.setSelected(true);
+        }
+        emailTxtField1.setText(L.getEmail());
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AddEmpPanel;
     private javax.swing.JPanel DelEmpPanel;

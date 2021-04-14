@@ -56,9 +56,9 @@ public class EmployeeDataTable extends AbstractTableModel{
             case 5:
                 return E.getEmpID();
             case 6:
-                return E.getDob();
+                return "Info";
             case 7:
-                return E.getGender();
+                return "Edit";
             case 8:
                 return "Delete";
         }
@@ -83,12 +83,33 @@ public class EmployeeDataTable extends AbstractTableModel{
             case 5:
                 return String.class;
             case 6:
-                return Date.class;
+                return String.class;
             case 7:
                 return String.class;
             case 8:
                 return String.class;
         }
         return null;
+    }
+    
+    
+        @Override
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+      
+        return columnIndex == 7 || columnIndex==8;
+    }
+    
+//        public void infoRow(int row){
+//     String id = (String)getValueAt(row, 5);
+//     EmployeeForm p = new EmployeeForm(id, "info");        
+//    }
+        public void editRow(int row){
+     String id = (String)getValueAt(row, 5);
+     EmployeeForm p = new EmployeeForm(id, "Edit");        
+    }
+      
+    public void deleteRow(int row){
+     String id = (String)getValueAt(row, 5);
+     EmployeeForm p = new EmployeeForm(id, "Delete");     
     }
 }

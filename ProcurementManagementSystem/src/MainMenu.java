@@ -1,4 +1,6 @@
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /*
@@ -183,8 +185,13 @@ public class MainMenu extends javax.swing.JFrame {
     private void ExitBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitBtnMouseClicked
         // TODO add your handling code here:
         int confirm = JOptionPane.showConfirmDialog(null, "Are you sure to exit from the System?", "Warning...!", 1);
-        if(confirm == JOptionPane.YES_OPTION)
-        {
+        if (confirm == JOptionPane.YES_OPTION) {
+            try {
+                EmployeeList.getObject().saveEmloyeeData();
+            } catch (Throwable ex) {
+                Logger.getLogger(EmployeeForm.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Employee Data Failed to save", "⚠ Warning...!!", 1);
+            }
             System.exit(0);
         }
     }//GEN-LAST:event_ExitBtnMouseClicked

@@ -25,8 +25,15 @@ public class ManagerLogin extends javax.swing.JFrame {
      */
     public ManagerLogin() {
         initComponents();
+        try {
+            EmployeeList.getObject().loadEmployeeData();
+        } catch (Exception ex) {
+            System.out.println("Error loading file");
+        }
+//        Email.setText("");
+//        Password.setText("");
     }
-
+    
     private static ManagerLogin obj;
     public static ManagerLogin getObject()
     {
