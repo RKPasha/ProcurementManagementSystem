@@ -192,6 +192,12 @@ public class MainMenu extends javax.swing.JFrame {
                 Logger.getLogger(EmployeeForm.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Employee Data Failed to save", "⚠ Warning...!!", 1);
             }
+                        try {
+                Inventory.getObject().saveInventory();
+            } catch (Throwable ex) {
+                Logger.getLogger(EmployeeForm.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Inventory Data Failed to save", "⚠ Warning...!!", 1);
+            }
             System.exit(0);
         }
     }//GEN-LAST:event_ExitBtnMouseClicked

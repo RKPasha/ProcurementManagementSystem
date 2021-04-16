@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -37,6 +38,8 @@ public class EmployeeForm extends javax.swing.JFrame {
      */
     public EmployeeForm(String Employee, String Action, String confirm) {
         initComponents();
+        Inventory.getObject().addItemsToComboBox();
+        jComboBox1.setModel(new DefaultComboBoxModel<String>(Inventory.getObject().getComboBoxItems().toArray(new String[0])));
         this.confrm = confirm;
         maleRadioBtn.setSelected(true);
         switchPanels(jPanel2);
@@ -817,7 +820,6 @@ public class EmployeeForm extends javax.swing.JFrame {
         jLabel27.setForeground(new java.awt.Color(0, 0, 0));
         jLabel27.setText("Select Stationary Item");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Select Stationary item-", "Ballpen", "Paper", "Stapler" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -1150,6 +1152,12 @@ public class EmployeeForm extends javax.swing.JFrame {
             } catch (Throwable ex) {
                 Logger.getLogger(EmployeeForm.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Employee Data Failed to save", "⚠ Warning...!!", 1);
+            }
+            try {
+                Inventory.getObject().saveInventory();
+            } catch (Throwable ex) {
+                Logger.getLogger(EmployeeForm.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Inventory Data Failed to save", "⚠ Warning...!!", 1);
             }
             System.exit(0);
         }

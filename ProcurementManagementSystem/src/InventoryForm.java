@@ -20,6 +20,7 @@ import javax.swing.JTable;
  */
 public class InventoryForm extends javax.swing.JFrame {
 
+    public static String itemName;
     Validators V = new Validators();
     /**
      * Creates new form InventoryForm
@@ -76,7 +77,7 @@ public class InventoryForm extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         closeMenuItem = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        editMenuItem = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         logoutMenuItem = new javax.swing.JMenuItem();
 
@@ -163,6 +164,11 @@ public class InventoryForm extends javax.swing.JFrame {
 
         removeMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         removeMenuItem.setText("Remove an Item");
+        removeMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeMenuItemActionPerformed(evt);
+            }
+        });
         jMenu1.add(removeMenuItem);
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_HOME, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -187,9 +193,14 @@ public class InventoryForm extends javax.swing.JFrame {
 
         jMenu2.setText("Edit");
 
-        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_INSERT, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem4.setText("Edit an item");
-        jMenu2.add(jMenuItem4);
+        editMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_INSERT, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        editMenuItem.setText("Edit an item");
+        editMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu2.add(editMenuItem);
 
         jMenuBar1.add(jMenu2);
 
@@ -242,6 +253,12 @@ public class InventoryForm extends javax.swing.JFrame {
                 Logger.getLogger(EmployeeForm.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Employee Data Failed to save", "⚠ Warning...!!", 1);
             }
+            try {
+                Inventory.getObject().saveInventory();
+            } catch (Throwable ex) {
+                Logger.getLogger(EmployeeForm.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Inventory Data Failed to save", "⚠ Warning...!!", 1);
+            }
             System.exit(0);
         }
     }//GEN-LAST:event_closeMenuItemActionPerformed
@@ -273,29 +290,84 @@ public class InventoryForm extends javax.swing.JFrame {
         MainMenu.getObject().setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void removeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeMenuItemActionPerformed
+        // TODO add your handling code here:
+        if (searchItem()) {
+            Inventory.getObject().deleteAccessory(itemName);
+            JOptionPane.showMessageDialog(null, "Item removed Successfully..!");
+            this.setVisible(false);
+            InventoryForm I = new InventoryForm("helo", "helo");
+            I.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Item not Found");
+        }
+    }//GEN-LAST:event_removeMenuItemActionPerformed
+
+    private void editMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editMenuItemActionPerformed
+        // TODO add your handling code here:
+        if (searchItem()) {
+            try{
+                Accessories A = new Accessories();
+                String name = JOptionPane.showInputDialog(null, "Enter the updated name of Item", "Edit Item", 1);
+                String quantity = JOptionPane.showInputDialog(null, "Enter the Quantity of Item", "Add Item", 1);
+                int quant = Integer.parseInt(quantity);
+                A.setItemName(name);
+                A.setQuantity(quant);
+                Inventory.getObject().updateAccessory(itemName, A);
+                JOptionPane.showMessageDialog(null, "Item updated Successfully..!");
+                this.setVisible(false);
+                InventoryForm I = new InventoryForm("helo", "helo");
+                I.setVisible(true);
+            }catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid Quantity...!", "Warning", 1);
+        }
+        } else {
+            JOptionPane.showMessageDialog(null, "Item not Found");
+        }
+    }//GEN-LAST:event_editMenuItemActionPerformed
+
     public void addItem() {
         try {
-            String name = JOptionPane.showInputDialog(null, "Enter the name of Item", "Add Item", 1);
-            String quantity = JOptionPane.showInputDialog(null, "Enter the Quantity of Item", "Add Item", 1);
-            int quant = Integer.parseInt(quantity);
-            Accessories A = new Accessories();
-            A.setItemName(name);
-            A.setQuantity(quant);
-            Inventory.getObject().addAccessory(A);
-            JOptionPane.showMessageDialog(null, "Item Successfully added to list...!", "Item Added", 1);
-            this.setVisible(false);
-            InventoryForm I = new InventoryForm("helo" , "helo"); 
-            I.setVisible(true);
+            if (!(searchItem())) {
+                if(itemName.equalsIgnoreCase("laptop") || itemName.equalsIgnoreCase("laptops")){
+                    JOptionPane.showMessageDialog(null, "Sorry..! You can,t add laptop in this List", "Warning...!!", 1);
+                } else {
+                    String quantity = JOptionPane.showInputDialog(null, "Enter the Quantity of Item", "Add Item", 1);
+                    int quant = Integer.parseInt(quantity);
+                    Accessories A = new Accessories();
+                    A.setItemName(itemName);
+                    A.setQuantity(quant);
+                    Inventory.getObject().addAccessory(A);
+                    JOptionPane.showMessageDialog(null, "Item Successfully added to list...!", "Item Added", 1);
+                    this.setVisible(false);
+                    InventoryForm I = new InventoryForm("helo", "helo");
+                    I.setVisible(true);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Item Already Exist...!");
+            }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Invalid Quantity...!", "Warning", 1);
         }
     }
 
+    public boolean searchItem(){
+        boolean flag =   false;
+        itemName = JOptionPane.showInputDialog(null, "Enter the name of item :", "Search Item..", 1);
+        for (int i = 0; i < Inventory.getObject().getAllInventory().size(); i++) {
+                if(Inventory.getObject().getAllInventory().get(i).getItemName().equalsIgnoreCase(itemName)){
+                    flag = true;
+                    break;
+                }
+            }
+        return flag;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addItemBtn;
     private javax.swing.JMenuItem addMenuItem;
     private javax.swing.JMenuItem closeMenuItem;
+    private javax.swing.JMenuItem editMenuItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
@@ -303,7 +375,6 @@ public class InventoryForm extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;

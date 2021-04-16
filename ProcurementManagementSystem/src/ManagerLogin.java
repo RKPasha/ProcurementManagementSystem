@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class ManagerLogin extends javax.swing.JFrame {
 
+    
     /**
      * Creates new form ManagerLogin
      */
@@ -28,10 +29,13 @@ public class ManagerLogin extends javax.swing.JFrame {
         try {
             EmployeeList.getObject().loadEmployeeData();
         } catch (Exception ex) {
-            System.out.println("Error loading file");
+            System.out.println("Error loading Employee_Data file");
         }
-//        Email.setText("");
-//        Password.setText("");
+        try {
+            Inventory.getObject().loadInventory();
+        } catch (Exception ex) {
+            System.out.println("Error loading Inventory file");
+        }
     }
     
     private static ManagerLogin obj;
@@ -197,6 +201,12 @@ public class ManagerLogin extends javax.swing.JFrame {
             } catch (Throwable ex) {
                 Logger.getLogger(EmployeeForm.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Employee Data Failed to save", "⚠ Warning...!!", 1);
+            }
+            try {
+                Inventory.getObject().saveInventory();
+            } catch (Throwable ex) {
+                Logger.getLogger(EmployeeForm.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Inventory Data Failed to save", "⚠ Warning...!!", 1);
             }
             System.exit(0);
         }
