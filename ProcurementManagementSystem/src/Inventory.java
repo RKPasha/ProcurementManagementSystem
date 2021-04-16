@@ -4,9 +4,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /*
@@ -83,6 +81,12 @@ public class Inventory {
     
     public List<Accessories> getAllInventory() {
         return list;
+    }
+    
+        public Accessories getItem(String name)
+    {
+        int index = searchAccessory(name);
+        return list.get(index);
     }
     
     protected void saveInventory() throws Throwable {

@@ -169,7 +169,7 @@ public class EmployeeForm extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField2 = new javax.swing.JTextField();
+        itemQuantity = new javax.swing.JTextField();
         addListBtn = new javax.swing.JLabel();
         genSlipBtn = new javax.swing.JLabel();
         IssueLapPanel = new javax.swing.JPanel();
@@ -826,14 +826,17 @@ public class EmployeeForm extends javax.swing.JFrame {
             }
         });
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        itemQuantity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                itemQuantityActionPerformed(evt);
             }
         });
 
         addListBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/addbtn.png"))); // NOI18N
         addListBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addListBtnMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 addListBtnMouseEntered(evt);
             }
@@ -872,7 +875,7 @@ public class EmployeeForm extends javax.swing.JFrame {
                     .addGroup(IssueStPanelLayout.createSequentialGroup()
                         .addGroup(IssueStPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jComboBox1, 0, 187, Short.MAX_VALUE)
-                            .addComponent(jTextField2))
+                            .addComponent(itemQuantity))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                         .addComponent(addListBtn)
                         .addGap(22, 22, 22))))
@@ -899,7 +902,7 @@ public class EmployeeForm extends javax.swing.JFrame {
                         .addGap(47, 47, 47)
                         .addGroup(IssueStPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel26)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(itemQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(IssueStPanelLayout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(addListBtn)))
@@ -938,11 +941,11 @@ public class EmployeeForm extends javax.swing.JFrame {
         jLabel30.setForeground(new java.awt.Color(0, 0, 0));
         jLabel30.setText("Select the Generation");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Core i3", "Core i5", "Core i7", "Core i9" }));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HP", "Lenovo", "Dell", "Toshiba", "Microsoft", "Acer" }));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3rd", "4th", "5th", "7th", "9th" }));
 
         genLapSlipBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/genslipbtn.png"))); // NOI18N
         genLapSlipBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1394,9 +1397,9 @@ public class EmployeeForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_delBtnMouseClicked
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void itemQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemQuantityActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_itemQuantityActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
@@ -1523,6 +1526,16 @@ public class EmployeeForm extends javax.swing.JFrame {
         }
         emailTxtField1.setText(L.getEmail());
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void addListBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addListBtnMouseClicked
+        // TODO add your handling code here:
+        int quant = Integer.parseInt(itemQuantity.getText());
+        if(quant <= Inventory.getObject().getAllInventory().get(jComboBox1.getSelectedIndex()).getQuantity()){
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Stock is less than your Demand");
+        }
+    }//GEN-LAST:event_addListBtnMouseClicked
     
     public void switchPanels(JPanel panel) {
         jLayeredPane.removeAll();
@@ -1585,6 +1598,7 @@ public class EmployeeForm extends javax.swing.JFrame {
     private javax.swing.JLabel genSlipBtn;
     private javax.swing.JLabel isuLapBtn;
     private javax.swing.JLabel isuStBtn;
+    private javax.swing.JTextField itemQuantity;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
@@ -1636,7 +1650,6 @@ public class EmployeeForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JMenuItem logoutMenuItem;
     private javax.swing.JRadioButton maleRadioBtn;
     private javax.swing.JRadioButton maleRadioBtn1;

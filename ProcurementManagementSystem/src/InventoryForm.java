@@ -29,6 +29,19 @@ public class InventoryForm extends javax.swing.JFrame {
         initComponents();
         InventoryTable t = new InventoryTable(Inventory.getObject().getAllInventory());
         jTable2.setModel(t);
+        if (Action.equals("Add")) {
+                System.out.println("Here i m");
+                InventoryForm.itemName = name;
+                Inventory.getObject().getItem(name).setQuantity(Inventory.getObject().getItem(name).getQuantity()  + 1);
+                this.setVisible(false);
+                InventoryForm I = new InventoryForm("helo", "helo");
+                I.setVisible(true);
+            }else if(Action.equals("Minus")){
+                Inventory.getObject().getItem(name).setQuantity(Inventory.getObject().getItem(name).getQuantity()  - 1);
+                this.setVisible(false);
+                InventoryForm I = new InventoryForm("helo", "helo");
+                I.setVisible(true);
+            }
         Action Add = new AbstractAction() {
             
             @Override
