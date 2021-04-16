@@ -1,7 +1,12 @@
 
+import java.awt.event.ActionEvent;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,11 +20,37 @@ import javax.swing.JOptionPane;
  */
 public class InventoryForm extends javax.swing.JFrame {
 
+    Validators V = new Validators();
     /**
      * Creates new form InventoryForm
      */
-    public InventoryForm() {
+    public InventoryForm(String name, String Action) {
         initComponents();
+        InventoryTable t = new InventoryTable(Inventory.getObject().getAllInventory());
+        jTable2.setModel(t);
+        Action Add = new AbstractAction() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JTable table = (JTable) e.getSource();
+                int row = Integer.valueOf(e.getActionCommand());
+                InventoryTable model = (InventoryTable) table.getModel();
+                model.addRow(row);
+            }
+        };
+        ButtonColumn add = new ButtonColumn(jTable2, Add, 3);
+        
+        Action Minus = new AbstractAction() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JTable table = (JTable) e.getSource();
+                int row = Integer.valueOf(e.getActionCommand());
+                InventoryTable model = (InventoryTable) table.getModel();
+                model.minusRow(row);
+            }
+        };
+        ButtonColumn minusButton = new ButtonColumn(jTable2, Minus, 4);
     }
 
     /**
@@ -32,7 +63,7 @@ public class InventoryForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable2 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -49,63 +80,23 @@ public class InventoryForm extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         logoutMenuItem = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setBackground(new java.awt.Color(255, 204, 204));
+        setResizable(false);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
-                "Sr. No", "Name of item", "Quantity Available", "Manage"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-        }
+        ));
+        jTable2.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jTable2);
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
         jPanel1.setForeground(new java.awt.Color(255, 204, 204));
@@ -233,6 +224,7 @@ public class InventoryForm extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void addMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMenuItemActionPerformed
@@ -281,11 +273,22 @@ public class InventoryForm extends javax.swing.JFrame {
         MainMenu.getObject().setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    public void addItem ()
-    {
-        JOptionPane.showInputDialog(null, "Enter the name of Item", "Add Item", 1);
-        JOptionPane.showInputDialog(null, "Enter the Quantity of Item", "Add Item", 1);
-        JOptionPane.showMessageDialog(null, "Item Successfully added to list...!", "Item Added", 1);
+    public void addItem() {
+        try {
+            String name = JOptionPane.showInputDialog(null, "Enter the name of Item", "Add Item", 1);
+            String quantity = JOptionPane.showInputDialog(null, "Enter the Quantity of Item", "Add Item", 1);
+            int quant = Integer.parseInt(quantity);
+            Accessories A = new Accessories();
+            A.setItemName(name);
+            A.setQuantity(quant);
+            Inventory.getObject().addAccessory(A);
+            JOptionPane.showMessageDialog(null, "Item Successfully added to list...!", "Item Added", 1);
+            this.setVisible(false);
+            InventoryForm I = new InventoryForm("helo" , "helo"); 
+            I.setVisible(true);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid Quantity...!", "Warning", 1);
+        }
     }
 
 
@@ -304,7 +307,7 @@ public class InventoryForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JMenuItem logoutMenuItem;
     private javax.swing.JMenuItem removeMenuItem;
     // End of variables declaration//GEN-END:variables

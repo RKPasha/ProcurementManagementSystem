@@ -21,56 +21,80 @@ import javax.swing.JTable;
  * @author Abdullah
  */
 public class EmployeeForm extends javax.swing.JFrame {
-
+    
     Validators V = new Validators();
     EmployeeData E;
-    private String ID;
-    public EmployeeForm(String Employee, String Action){
-        this.ID = Employee;
-        if(Action.equals("Edit"))
-        {
-            System.out.println("Here i m");
-           editTableBtn();
-        }else if(Action.equals("Delete")){
-            
-        }
-    }
+    private static String ID;
+    public static EmployeeData L;
+    public String confrm;
+
     /**
      * Creates new form EmployeeForm
+     *
+     * @param Employee
+     * @param Action
+     * @param confirm
      */
-    public EmployeeForm() {
+    public EmployeeForm(String Employee, String Action, String confirm) {
         initComponents();
+        this.confrm = confirm;
         maleRadioBtn.setSelected(true);
         switchPanels(jPanel2);
+        if (confirm.equals("yes")) {
+            System.out.println(Employee);
+            EmployeeForm.ID = Employee;
+            if (Action.equals("Edit")) {
+                System.out.println("Here i m");
+                this.L = EmployeeList.getObject().getEmployee(ID);
+                System.out.println(L.getName());
+            } else if (Action.equals("Delete")) {
+                //this.ID = Employee;
+            }else if(Action.equals("Info")){
+                JOptionPane.showMessageDialog(null, Employee +" Are u comedy me?");
+            }
+        }
         EmployeeDataTable t = new EmployeeDataTable(EmployeeList.getObject().getAllEmployee());
         jTable1.setModel(t);
         
         Action increase = new AbstractAction() {
-
+            
             @Override
             public void actionPerformed(ActionEvent e) {
                 JTable table = (JTable) e.getSource();
                 int row = Integer.valueOf(e.getActionCommand());
                 EmployeeDataTable model = (EmployeeDataTable) table.getModel();
-                model.editRow(row);     
+                model.editRow(row);
+                switchPanels(EditEmpPanel);
+                //nameTxtField1.setText("Rehan");
             }
         };
         ButtonColumn inc = new ButtonColumn(jTable1, increase, 7);
         
-       
-         Action deleteAction = new AbstractAction() {
-
+        Action deleteAction = new AbstractAction() {
+            
             @Override
             public void actionPerformed(ActionEvent e) {
                 JTable table = (JTable) e.getSource();
                 int row = Integer.valueOf(e.getActionCommand());
                 EmployeeDataTable model = (EmployeeDataTable) table.getModel();
-                model.deleteRow(row);     
+                model.deleteRow(row);
+                switchPanels(DelEmpPanel);
             }
         };
         ButtonColumn deleteButton = new ButtonColumn(jTable1, deleteAction, 8);
+        
+        Action infoAction = new AbstractAction() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JTable table = (JTable) e.getSource();
+                int row = Integer.valueOf(e.getActionCommand());
+                EmployeeDataTable model = (EmployeeDataTable) table.getModel();
+                model.infoRow(row);
+                  }
+        };
+        ButtonColumn infoButton = new ButtonColumn(jTable1, infoAction, 6);
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -129,11 +153,12 @@ public class EmployeeForm extends javax.swing.JFrame {
         femaleRadioBtn1 = new javax.swing.JRadioButton();
         nameTxtField1 = new javax.swing.JTextField();
         updateBtn = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         DelEmpPanel = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        delTxtField = new javax.swing.JTextField();
         delBtn = new javax.swing.JLabel();
         IssueStPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -606,6 +631,14 @@ public class EmployeeForm extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("🔄Load Previous Data");
+        jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout EditEmpPanelLayout = new javax.swing.GroupLayout(EditEmpPanel);
         EditEmpPanel.setLayout(EditEmpPanelLayout);
         EditEmpPanelLayout.setHorizontalGroup(
@@ -613,14 +646,13 @@ public class EmployeeForm extends javax.swing.JFrame {
             .addGroup(EditEmpPanelLayout.createSequentialGroup()
                 .addGroup(EditEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(EditEmpPanelLayout.createSequentialGroup()
-                        .addGap(253, 253, 253)
-                        .addGroup(EditEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(updateBtn)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(EditEmpPanelLayout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(EditEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(EditEmpPanelLayout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(150, 150, 150)
+                                .addComponent(updateBtn)
+                                .addGap(0, 81, Short.MAX_VALUE))
                             .addGroup(EditEmpPanelLayout.createSequentialGroup()
                                 .addGroup(EditEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel19)
@@ -649,24 +681,26 @@ public class EmployeeForm extends javax.swing.JFrame {
                                 .addComponent(jLabel24)
                                 .addGap(18, 18, 18)
                                 .addComponent(emailTxtField1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditEmpPanelLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4)
+                        .addGap(159, 159, 159)))
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         EditEmpPanelLayout.setVerticalGroup(
             EditEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EditEmpPanelLayout.createSequentialGroup()
-                .addGroup(EditEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(EditEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(EditEmpPanelLayout.createSequentialGroup()
-                        .addGroup(EditEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(EditEmpPanelLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(jLabel4))
-                            .addGroup(EditEmpPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel9)))
+                        .addContainerGap()
+                        .addComponent(jLabel9)
                         .addGap(167, 167, 167))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditEmpPanelLayout.createSequentialGroup()
+                    .addGroup(EditEmpPanelLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(EditEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(EditEmpPanelLayout.createSequentialGroup()
                                 .addGroup(EditEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -688,7 +722,9 @@ public class EmployeeForm extends javax.swing.JFrame {
                             .addComponent(maleRadioBtn1)
                             .addComponent(femaleRadioBtn1))
                         .addGap(34, 34, 34)))
-                .addComponent(updateBtn)
+                .addGroup(EditEmpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(updateBtn)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
@@ -706,7 +742,7 @@ public class EmployeeForm extends javax.swing.JFrame {
         jLabel25.setForeground(new java.awt.Color(0, 0, 0));
         jLabel25.setText("Please Enter the ID again to confirm");
 
-        jTextField1.setText("EMP-");
+        delTxtField.setText("EMP-");
 
         delBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/delbtn.png"))); // NOI18N
         delBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -741,7 +777,7 @@ public class EmployeeForm extends javax.swing.JFrame {
                         .addComponent(delBtn)
                         .addGap(230, 230, 230))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DelEmpPanelLayout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(delTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(194, 194, 194))))
         );
         DelEmpPanelLayout.setVerticalGroup(
@@ -757,7 +793,7 @@ public class EmployeeForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel25)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(delTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(delBtn)
                 .addContainerGap(73, Short.MAX_VALUE))
@@ -1141,9 +1177,9 @@ public class EmployeeForm extends javax.swing.JFrame {
             cellNoTxtField1.setText(E.getCellNo());
             dobField1.setDate(E.getDob());
             cnicNoTxtField1.setText(E.getCnicNo());
-            if(E.getGender().equalsIgnoreCase("male")){
+            if (E.getGender().equalsIgnoreCase("male")) {
                 maleRadioBtn1.setSelected(true);
-            }else if(E.getGender().equalsIgnoreCase("female")){
+            } else if (E.getGender().equalsIgnoreCase("female")) {
                 femaleRadioBtn1.setSelected(true);
             }
             emailTxtField1.setText(E.getEmail());
@@ -1269,8 +1305,7 @@ public class EmployeeForm extends javax.swing.JFrame {
 
     private void addBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBtnMouseClicked
         // TODO add your handling code here:
-        if(V.checkName(nameTxtField.getText()) && V.isValidCellNo(cellNoTxtField.getText()) && V.isValidCNIC(cnicNoTxtField.getText()) && V.isValidEmail(emailTxtField.getText()) && V.checkDateOfBirth(dobField.getDate()))
-        {
+        if (V.checkName(nameTxtField.getText()) && V.isValidCellNo(cellNoTxtField.getText()) && V.isValidCNIC(cnicNoTxtField.getText()) && V.isValidEmail(emailTxtField.getText()) && V.checkDateOfBirth(dobField.getDate())) {
             E = new EmployeeData();
             E.setName(nameTxtField.getText());
             E.setCellNo(cellNoTxtField.getText());
@@ -1288,19 +1323,39 @@ public class EmployeeForm extends javax.swing.JFrame {
             int x = rand.nextInt(999);
             E.setEmpID("EMP-" + String.valueOf(x));
             EmployeeList.getObject().addEmployee(E);
-        JOptionPane.showMessageDialog(null, "Employee ID: EMP- " +E.getEmpID() +"\nEmployee Succesfully added!!", "Congratualations...", 1);
-        EmployeeForm F = new EmployeeForm();
-        this.setVisible(false);
-        F.setVisible(true);
-        }
-        else{
+            JOptionPane.showMessageDialog(null, "Employee ID: EMP- " + E.getEmpID() + "\nEmployee Succesfully added!!", "Congratualations...", 1);
+            EmployeeForm F = new EmployeeForm("helo" ,"helo" ,"no");
+            this.setVisible(false);
+            F.setVisible(true);
+        } else {
             JOptionPane.showMessageDialog(null, "Invalid Data Entered...!", "⚠ Warning......!!", 1);
         }
     }//GEN-LAST:event_addBtnMouseClicked
 
     private void updateBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateBtnMouseClicked
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Employee Data Succesfully updated!!", "Congratualations...", 1);
+         if (V.checkName(nameTxtField1.getText()) && V.isValidCellNo(cellNoTxtField1.getText()) && V.isValidCNIC(cnicNoTxtField1.getText()) && V.isValidEmail(emailTxtField1.getText()) && V.checkDateOfBirth(dobField1.getDate())) {
+            E = new EmployeeData();
+            E.setName(nameTxtField1.getText());
+            E.setCellNo(cellNoTxtField1.getText());
+            Date date = dobField1.getDate();
+            E.setDob(date);
+            E.setCnicNo(cnicNoTxtField1.getText());
+            if (maleRadioBtn1.isSelected()) {
+                E.setGender("Male");
+            } else {
+                E.setGender("Female");
+            }
+            E.setEmail(emailTxtField1.getText());
+            E.setEmpID(ID);
+            EmployeeList.getObject().updateEmployee(ID, E);
+            JOptionPane.showMessageDialog(null, "Employee Data Succesfully updated!!", "Congratualations...", 1);
+            EmployeeForm F = new EmployeeForm("helo" ,"helo" ,"no");
+            this.setVisible(false);
+            F.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid Data Entered...!", "⚠ Warning......!!", 1);
+        }
     }//GEN-LAST:event_updateBtnMouseClicked
 
     private void delBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delBtnMouseEntered
@@ -1315,9 +1370,19 @@ public class EmployeeForm extends javax.swing.JFrame {
 
     private void delBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delBtnMouseClicked
         // TODO add your handling code here:
-        int confirm = JOptionPane.showConfirmDialog(null, "Are you sure to remove this Employee from the System?", "Warning...!", 1);
-        if (confirm == JOptionPane.YES_OPTION) {
-            JOptionPane.showMessageDialog(null, "Employee Removed Succeddfully....!", "Delete", 1);
+        System.out.println(delTxtField.getText());
+        System.out.println(ID);
+        if (delTxtField.getText().equals(ID)) {
+            int confirm = JOptionPane.showConfirmDialog(null, "Are you sure to remove this Employee from the System?", "Warning...!", 1);
+            if (confirm == JOptionPane.YES_OPTION) {
+                EmployeeList.getObject().deleteEmployee(delTxtField.getText());
+                JOptionPane.showMessageDialog(null, "Employee Removed Successfully....!", "Delete", 1);
+                EmployeeForm F = new EmployeeForm("helo" ,"helo" ,"no");
+                this.setVisible(false);
+                F.setVisible(true);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Employee ID mismatch..!");
         }
     }//GEN-LAST:event_delBtnMouseClicked
 
@@ -1437,31 +1502,8 @@ public class EmployeeForm extends javax.swing.JFrame {
         MainMenu.getObject().setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    public void switchPanels(JPanel panel) {
-        jLayeredPane.removeAll();
-        jLayeredPane.add(panel);
-        jLayeredPane.repaint();
-        jLayeredPane.revalidate();
-    }
-
-    public boolean searchEmp() {
-        boolean flag = false;
-        this.ID = JOptionPane.showInputDialog(null, "Enter the Employee ID", "Search Employee...", 1);
-          for(int i = 0 ; i  < EmployeeList.getObject().getAllEmployee().size(); i++)
-         {
-             if(EmployeeList.getObject().getAllEmployee().get(i).getEmpID().equals(ID))
-             {
-                 System.out.println("Employee Found");
-                 flag =true;
-                 break;
-             }
-         }
-        return flag;
-    }
-
-    private void editTableBtn(){
-        EmployeeData L = EmployeeList.getObject().getEmployee(ID);
-        switchPanels(EditEmpPanel);
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
         nameTxtField1.setText(L.getName());
         cellNoTxtField1.setText(L.getCellNo());
         dobField1.setDate(L.getDob());
@@ -1472,9 +1514,38 @@ public class EmployeeForm extends javax.swing.JFrame {
             femaleRadioBtn1.setSelected(true);
         }
         emailTxtField1.setText(L.getEmail());
+    }//GEN-LAST:event_jButton1ActionPerformed
+    
+    public void switchPanels(JPanel panel) {
+        jLayeredPane.removeAll();
+        jLayeredPane.add(panel);
+        jLayeredPane.repaint();
+        jLayeredPane.revalidate();
     }
     
-    
+    public boolean searchEmp() {
+        boolean flag = false;
+        this.ID = JOptionPane.showInputDialog(null, "Enter the Employee ID", "Search Employee...", 1);
+        for (int i = 0; i < EmployeeList.getObject().getAllEmployee().size(); i++) {
+            if (EmployeeList.getObject().getAllEmployee().get(i).getEmpID().equals(ID)) {
+                System.out.println("Employee Found");
+                flag = true;
+                break;
+            }
+        }
+        if (flag == false) {
+            JOptionPane.showMessageDialog(null, "Employee Not Found......\nPlease recheck the Employee ID and Try Again\nThank You..! ");
+            //searchEmp();
+        }
+        return flag;
+    }
+
+//    public void editTableBtn() {
+//        if (this.confrm.equals("yes")) {
+//
+//        }
+//    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AddEmpPanel;
     private javax.swing.JPanel DelEmpPanel;
@@ -1493,6 +1564,7 @@ public class EmployeeForm extends javax.swing.JFrame {
     private javax.swing.JTextField cnicNoTxtField1;
     private javax.swing.JLabel delBtn;
     private javax.swing.JMenuItem delEmpMenuItem;
+    private javax.swing.JTextField delTxtField;
     private com.toedter.calendar.JDateChooser dobField;
     private com.toedter.calendar.JDateChooser dobField1;
     private javax.swing.JMenuItem editMenuItem;
@@ -1505,6 +1577,7 @@ public class EmployeeForm extends javax.swing.JFrame {
     private javax.swing.JLabel genSlipBtn;
     private javax.swing.JLabel isuLapBtn;
     private javax.swing.JLabel isuStBtn;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
@@ -1555,13 +1628,12 @@ public class EmployeeForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JMenuItem logoutMenuItem;
     private javax.swing.JRadioButton maleRadioBtn;
     private javax.swing.JRadioButton maleRadioBtn1;
     private javax.swing.JTextField nameTxtField;
-    private javax.swing.JTextField nameTxtField1;
+    public javax.swing.JTextField nameTxtField1;
     private javax.swing.JLabel updateBtn;
     // End of variables declaration//GEN-END:variables
 }

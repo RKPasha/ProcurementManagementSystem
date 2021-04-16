@@ -54,6 +54,20 @@ public class EmployeeList {
         return index;
     }
     
+    public void updateEmployee(String ID, EmployeeData E) {
+        int index = searchEmployee(ID);
+        if (index == -1) {
+        } else {
+            list.set(index , E);
+        }
+    }
+    public void deleteEmployee(String ID) {
+        int index = searchEmployee(ID);
+        if (index == -1) {
+        } else {
+            list.remove(index);
+        }
+    }
     
     public EmployeeData getEmployee(String ID)
     {

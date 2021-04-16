@@ -205,14 +205,14 @@ public class MainMenu extends javax.swing.JFrame {
     private void EMPBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EMPBtnMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        EmployeeForm E = new EmployeeForm();
+        EmployeeForm E = new EmployeeForm("helo" ,"helo" ,"no");
         E.setVisible(true);
     }//GEN-LAST:event_EMPBtnMouseClicked
 
     private void SMBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SMBtnMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        InventoryForm I = new InventoryForm();
+        InventoryForm I = new InventoryForm("helo", "helo");
         I.setVisible(true);
     }//GEN-LAST:event_SMBtnMouseClicked
 

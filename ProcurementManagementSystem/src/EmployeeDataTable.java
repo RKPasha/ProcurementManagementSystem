@@ -68,7 +68,7 @@ public class EmployeeDataTable extends AbstractTableModel{
     
     @Override
     public Class<?> getColumnClass(int columnIndex) {
-        System.out.println("column index = " + columnIndex);
+        //System.out.println("column index = " + columnIndex);
         switch (columnIndex) {
             case 0:
                 return String.class;
@@ -96,20 +96,22 @@ public class EmployeeDataTable extends AbstractTableModel{
         @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
       
-        return columnIndex == 7 || columnIndex==8;
+        return columnIndex == 6 || columnIndex == 7 || columnIndex==8;
     }
     
-//        public void infoRow(int row){
-//     String id = (String)getValueAt(row, 5);
-//     EmployeeForm p = new EmployeeForm(id, "info");        
-//    }
+
         public void editRow(int row){
      String id = (String)getValueAt(row, 5);
-     EmployeeForm p = new EmployeeForm(id, "Edit");        
+     EmployeeForm p = new EmployeeForm(id, "Edit", "yes");        
     }
       
     public void deleteRow(int row){
      String id = (String)getValueAt(row, 5);
-     EmployeeForm p = new EmployeeForm(id, "Delete");     
+     EmployeeForm p = new EmployeeForm(id, "Delete" ,"yes");     
+    }
+    
+    public void infoRow(int row){
+     String id = (String)getValueAt(row, 5);
+     EmployeeForm p = new EmployeeForm(id, "Info" ,"yes");     
     }
 }
