@@ -187,9 +187,9 @@ public class EmployeeForm extends javax.swing.JFrame {
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        processorComboBox = new javax.swing.JComboBox<>();
+        modelComboBox = new javax.swing.JComboBox<>();
+        genComboBox = new javax.swing.JComboBox<>();
         genLapSlipBtn = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -201,6 +201,8 @@ public class EmployeeForm extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         editMenuItem = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        lightThemeMneu = new javax.swing.JMenuItem();
+        darkThemeMenu = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         aboutMenuItem = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
@@ -208,7 +210,10 @@ public class EmployeeForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(816, 626));
+        setResizable(false);
 
+        jTable1.setBackground(new java.awt.Color(255, 255, 149));
+        jTable1.setForeground(new java.awt.Color(51, 51, 51));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -953,14 +958,17 @@ public class EmployeeForm extends javax.swing.JFrame {
         jLabel30.setForeground(new java.awt.Color(0, 0, 0));
         jLabel30.setText("Select the Generation");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Core i3", "Core i5", "Core i7", "Core i9" }));
+        processorComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Core i3", "Core i5", "Core i7", "Core i9" }));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HP", "Lenovo", "Dell", "Toshiba", "Microsoft", "Acer" }));
+        modelComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HP", "Lenovo", "Dell", "Toshiba", "Microsoft", "Acer" }));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3rd", "4th", "5th", "7th", "9th" }));
+        genComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3rd", "4th", "5th", "7th", "9th" }));
 
         genLapSlipBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/genslipbtn.png"))); // NOI18N
         genLapSlipBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                genLapSlipBtnMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 genLapSlipBtnMouseEntered(evt);
             }
@@ -990,9 +998,9 @@ public class EmployeeForm extends javax.swing.JFrame {
                                         .addComponent(jLabel30))
                                     .addGap(28, 28, 28)
                                     .addGroup(IssueLapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addComponent(genComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(processorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(modelComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -1007,18 +1015,18 @@ public class EmployeeForm extends javax.swing.JFrame {
                         .addGap(32, 32, 32)
                         .addGroup(IssueLapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel28)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(modelComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(IssueLapPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel12)))
                 .addGap(20, 20, 20)
                 .addGroup(IssueLapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel29)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(processorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addGroup(IssueLapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(genComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addComponent(genLapSlipBtn)
                 .addContainerGap(52, Short.MAX_VALUE))
@@ -1103,7 +1111,24 @@ public class EmployeeForm extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("View");
+        jMenu3.setText("Theme");
+
+        lightThemeMneu.setText("Light Theme");
+        lightThemeMneu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lightThemeMneuActionPerformed(evt);
+            }
+        });
+        jMenu3.add(lightThemeMneu);
+
+        darkThemeMenu.setText("Dark Theme");
+        darkThemeMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                darkThemeMenuActionPerformed(evt);
+            }
+        });
+        jMenu3.add(darkThemeMenu);
+
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Help");
@@ -1223,6 +1248,10 @@ public class EmployeeForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (searchEmp()) {
             switchPanels(IssueLapPanel);
+            S = new SlipGenerator();
+            this.L = EmployeeList.getObject().getEmployee(ID);
+            S.list.add(L.getName());
+            S.list.add(L.getEmpID());
         }
     }//GEN-LAST:event_isuLapBtnMouseClicked
 
@@ -1570,6 +1599,38 @@ public class EmployeeForm extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Slip failed to generate!");
         }
     }//GEN-LAST:event_genSlipBtnMouseClicked
+
+    private void genLapSlipBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_genLapSlipBtnMouseClicked
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            Laptop L = new Laptop();
+            L.setModel(modelComboBox.getSelectedItem().toString());
+            L.setProcessor(processorComboBox.getSelectedItem().toString());
+            L.setGeneration(genComboBox.getSelectedItem().toString());
+            S.list.add(L);
+            S.generateLapTopSlip();
+            JOptionPane.showMessageDialog(null, "Slip generted Successfully..!");
+            switchPanels(jPanel2);
+        } catch (IOException ex) {
+            Logger.getLogger(EmployeeForm.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Slip failed to generate!");
+        }
+    }//GEN-LAST:event_genLapSlipBtnMouseClicked
+
+    private void lightThemeMneuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lightThemeMneuActionPerformed
+        // TODO add your handling code here:
+        jPanel1.setBackground(new Color(53,143,240));
+        jPanel2.setBackground(new Color(247 ,247 ,247));
+        jTable1.setBackground(new Color(237,255,255));
+    }//GEN-LAST:event_lightThemeMneuActionPerformed
+
+    private void darkThemeMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_darkThemeMenuActionPerformed
+        // TODO add your handling code here:
+        jPanel1.setBackground(new Color(21, 81, 82));
+        jPanel2.setBackground(new Color(97, 62, 125));
+        jTable1.setBackground(new Color(163, 173, 137));
+    }//GEN-LAST:event_darkThemeMenuActionPerformed
     
     public void switchPanels(JPanel panel) {
         jLayeredPane.removeAll();
@@ -1595,11 +1656,7 @@ public class EmployeeForm extends javax.swing.JFrame {
         return flag;
     }
 
-//    public void editTableBtn() {
-//        if (this.confrm.equals("yes")) {
-//
-//        }
-//    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AddEmpPanel;
@@ -1617,6 +1674,7 @@ public class EmployeeForm extends javax.swing.JFrame {
     private javax.swing.JTextField cellNoTxtField1;
     private javax.swing.JTextField cnicNoTxtField;
     private javax.swing.JTextField cnicNoTxtField1;
+    private javax.swing.JMenuItem darkThemeMenu;
     private javax.swing.JLabel delBtn;
     private javax.swing.JMenuItem delEmpMenuItem;
     private javax.swing.JTextField delTxtField;
@@ -1628,6 +1686,7 @@ public class EmployeeForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JRadioButton femaleRadioBtn;
     private javax.swing.JRadioButton femaleRadioBtn1;
+    private javax.swing.JComboBox<String> genComboBox;
     private javax.swing.JLabel genLapSlipBtn;
     private javax.swing.JLabel genSlipBtn;
     private javax.swing.JLabel isuLapBtn;
@@ -1635,9 +1694,6 @@ public class EmployeeForm extends javax.swing.JFrame {
     private javax.swing.JTextField itemQuantity;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1684,11 +1740,14 @@ public class EmployeeForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JMenuItem lightThemeMneu;
     private javax.swing.JMenuItem logoutMenuItem;
     private javax.swing.JRadioButton maleRadioBtn;
     private javax.swing.JRadioButton maleRadioBtn1;
+    private javax.swing.JComboBox<String> modelComboBox;
     private javax.swing.JTextField nameTxtField;
     public javax.swing.JTextField nameTxtField1;
+    private javax.swing.JComboBox<String> processorComboBox;
     private javax.swing.JLabel updateBtn;
     // End of variables declaration//GEN-END:variables
 }
