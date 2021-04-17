@@ -61,7 +61,7 @@ public class Inventory {
          {
              if(list.get(i).getItemName().equalsIgnoreCase(name))
              {
-                 System.out.println("Item Found");
+                 //System.out.println("Item Found");
                  index = i;
                  break;
              }

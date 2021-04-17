@@ -30,17 +30,11 @@ public class InventoryForm extends javax.swing.JFrame {
         InventoryTable t = new InventoryTable(Inventory.getObject().getAllInventory());
         jTable2.setModel(t);
         if (Action.equals("Add")) {
-                System.out.println("Here i m");
+                //System.out.println("Here i m");
                 InventoryForm.itemName = name;
                 Inventory.getObject().getItem(name).setQuantity(Inventory.getObject().getItem(name).getQuantity()  + 1);
-                this.setVisible(false);
-                InventoryForm I = new InventoryForm("helo", "helo");
-                I.setVisible(true);
             }else if(Action.equals("Minus")){
                 Inventory.getObject().getItem(name).setQuantity(Inventory.getObject().getItem(name).getQuantity()  - 1);
-                this.setVisible(false);
-                InventoryForm I = new InventoryForm("helo", "helo");
-                I.setVisible(true);
             }
         Action Add = new AbstractAction() {
             
@@ -50,6 +44,7 @@ public class InventoryForm extends javax.swing.JFrame {
                 int row = Integer.valueOf(e.getActionCommand());
                 InventoryTable model = (InventoryTable) table.getModel();
                 model.addRow(row);
+                Jhatka();
             }
         };
         ButtonColumn add = new ButtonColumn(jTable2, Add, 3);
@@ -62,6 +57,7 @@ public class InventoryForm extends javax.swing.JFrame {
                 int row = Integer.valueOf(e.getActionCommand());
                 InventoryTable model = (InventoryTable) table.getModel();
                 model.minusRow(row);
+                Jhatka();
             }
         };
         ButtonColumn minusButton = new ButtonColumn(jTable2, Minus, 4);
@@ -374,6 +370,11 @@ public class InventoryForm extends javax.swing.JFrame {
                 }
             }
         return flag;
+    }
+    public void Jhatka(){
+        this.setVisible(false);
+        InventoryForm I = new InventoryForm("helo", "helo");
+        I.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

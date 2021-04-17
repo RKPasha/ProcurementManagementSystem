@@ -24,8 +24,8 @@ public class ManagerLogin extends javax.swing.JFrame {
     /**
      * Creates new form ManagerLogin
      */
-    public ManagerLogin() {
-        initComponents();
+    public ManagerLogin(String load){
+         initComponents();
         try {
             EmployeeList.getObject().loadEmployeeData();
         } catch (Exception ex) {
@@ -36,6 +36,9 @@ public class ManagerLogin extends javax.swing.JFrame {
         } catch (Exception ex) {
             System.out.println("Error loading Inventory file");
         }
+    }
+    public ManagerLogin() {
+        initComponents();
     }
     
     private static ManagerLogin obj;
@@ -304,11 +307,12 @@ public class ManagerLogin extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ManagerLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManagerLogin().setVisible(true);
+                new ManagerLogin("load").setVisible(true);
             }
         });
     }

@@ -55,7 +55,6 @@ public class InventoryTable extends AbstractTableModel{
         return null;
     }
     
-    
      @Override
     public Class<?> getColumnClass(int columnIndex) {
         //System.out.println("column index = " + columnIndex);
@@ -78,13 +77,13 @@ public class InventoryTable extends AbstractTableModel{
      @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
       
-        return columnIndex == 3 || columnIndex == 4;
+        return  columnIndex == 3 || columnIndex == 4;
     }
     
 
         public void addRow(int row){
      String name = (String)getValueAt(row, 1);
-     InventoryForm F = new InventoryForm(name, "Add");        
+     InventoryForm F = new InventoryForm(name, "Add");
     }
       
     public void minusRow(int row){

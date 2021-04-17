@@ -1,6 +1,7 @@
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.util.Date;
 import java.util.Random;
 import java.util.logging.Level;
@@ -23,6 +24,7 @@ import javax.swing.JTable;
  */
 public class EmployeeForm extends javax.swing.JFrame {
     
+    SlipGenerator S;
     Validators V = new Validators();
     EmployeeData E;
     private static String ID;
@@ -53,7 +55,14 @@ public class EmployeeForm extends javax.swing.JFrame {
             } else if (Action.equals("Delete")) {
                 //this.ID = Employee;
             }else if(Action.equals("Info")){
-                JOptionPane.showMessageDialog(null, Employee +" Are u comedy me?");
+                this.L = EmployeeList.getObject().getEmployee(ID);
+                JOptionPane.showMessageDialog(null, "Employee ID : " + L.getEmpID()
+                        + "\n\nName : " + L.getName()
+                        + "\nDate of Birth : " + L.getDob()
+                        + "\nGender : " + L.getGender()
+                        + "\nCell No : " + L.getCellNo()
+                        + "\nCNIC No : " + L.getCnicNo()
+                        + "\nEmail ID : " + L.getEmail(), "Employee Personal Info",1);
             }
         }
         EmployeeDataTable t = new EmployeeDataTable(EmployeeList.getObject().getAllEmployee());
@@ -847,6 +856,9 @@ public class EmployeeForm extends javax.swing.JFrame {
 
         genSlipBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/genslipbtn.png"))); // NOI18N
         genSlipBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                genSlipBtnMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 genSlipBtnMouseEntered(evt);
             }
@@ -1228,6 +1240,10 @@ public class EmployeeForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (searchEmp()) {
             switchPanels(IssueStPanel);
+            S = new SlipGenerator();
+            this.L = EmployeeList.getObject().getEmployee(ID);
+            S.list.add(L.getName());
+            S.list.add(L.getEmpID());
         }
     }//GEN-LAST:event_isuStBtnMouseClicked
 
@@ -1531,11 +1547,29 @@ public class EmployeeForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         int quant = Integer.parseInt(itemQuantity.getText());
         if(quant <= Inventory.getObject().getAllInventory().get(jComboBox1.getSelectedIndex()).getQuantity()){
-            
+            Inventory.getObject().getItem(jComboBox1.getItemAt(jComboBox1.getSelectedIndex())).setQuantity(Inventory.getObject().getItem(jComboBox1.getItemAt(jComboBox1.getSelectedIndex())).getQuantity()  - Integer.parseInt(itemQuantity.getText()));
+            Accessories A = new Accessories();
+            A.setItemName(jComboBox1.getSelectedItem().toString());
+            A.setQuantity(Integer.parseInt(itemQuantity.getText()));
+            S.list.add(A);
+            JOptionPane.showMessageDialog(null, "Item added to cart....!");
+            itemQuantity.setText("");
         }else{
             JOptionPane.showMessageDialog(null, "Stock is less than your Demand");
         }
     }//GEN-LAST:event_addListBtnMouseClicked
+
+    private void genSlipBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_genSlipBtnMouseClicked
+        try {
+            // TODO add your handling code here:
+            S.generateStationarySlip();
+            JOptionPane.showMessageDialog(null, "Slip generted Successfully..!");
+            switchPanels(jPanel2);
+        } catch (IOException ex) {
+            Logger.getLogger(EmployeeForm.class.getName()).log(Level.SEVERE, null, ex);
+                        JOptionPane.showMessageDialog(null, "Slip failed to generate!");
+        }
+    }//GEN-LAST:event_genSlipBtnMouseClicked
     
     public void switchPanels(JPanel panel) {
         jLayeredPane.removeAll();
